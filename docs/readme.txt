@@ -1,4 +1,4 @@
-FBComment Module Version 1.0 for Xoops/ImpressCMS
+FBComment Module Version 1.0 for XOOPS/ImpressCMS
 
 Purpose
 =======
@@ -20,21 +20,21 @@ guide for configuration
 Usage
 =====
 This module does not have a real main page at this time. It 
-consists only of blocks and the neccessary scripts to support 
+consists only of blocks and the necessary scripts to support 
 those blocks. Attempts to use the fbcomment/index.php will
 result in an empty page. It is recommended to turn it off
 in the main menu in the CMS modules administration.
 
 Group access permissions to the fbcomment module are required 
 to use the blocks, above and beyond the block display permission. 
-Interacting with the blocks records the url, action and datetime
+Interacting with the blocks records the URL, action and datetime
 via AJAX style calls to scripts in the fbcomment directory
 which use the standard mainfile inclusion which adds a layer of
 additional protections (such as protector) but requires access
 permissions to work as intended.
 
 Also note, in normal operation, Facebook will pull data from 
-your site as the annonymous user. 
+your site as the anonymous user. 
 
 Module administration permissions enable in-block editing of 
 Open Graph meta data.
@@ -50,7 +50,7 @@ These blocks can be cloned as needed.
 Notes
 =====
 
-This module has been tested in Xoops version 2.5.5.
+This module has been tested in XOOPS version 2.5.5.
 
-This module was developed by Geekwright, LLC. Report any bugs
+This module was developed by geekwright, LLC. Report any bugs
 or issues to richard@geekwright.com
