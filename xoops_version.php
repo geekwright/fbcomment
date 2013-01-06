@@ -134,7 +134,7 @@ $modversion['blocks'][1] = array(
   'description' => _MI_FBCOM_COMMENT_DESC,
   'show_func' => 'b_fbcomment_comment_show',
   'edit_func' => 'b_fbcomment_comment_edit',
-  'options' => '0|page,post_id,itemid,topic_id,forum,storyid|0|'.XOOPS_URL.'/|0|450|10',
+  'options' => '0|page,post_id,itemid,topic_id,forum,storyid,lid|0|'.XOOPS_URL.'/|0|450|10',
   'template' => 'fbcomment_com_block.html');
 
 $modversion['blocks'][] = array(
@@ -143,7 +143,7 @@ $modversion['blocks'][] = array(
   'description' => _MI_FBCOM_LIKE_DESC,
   'show_func' => 'b_fbcomment_like_show',
   'edit_func' => 'b_fbcomment_like_edit',
-  'options' => '0|page,post_id,itemid,topic_id,forum,storyid|0|'.XOOPS_URL.'/|0|0|0|0|0',
+  'options' => '0|page,post_id,itemid,topic_id,forum,storyid,lid|0|'.XOOPS_URL.'/|0|0|0|0|0',
   'template' => 'fbcomment_like_block.html');
 
 $modversion['blocks'][] = array(
@@ -152,7 +152,7 @@ $modversion['blocks'][] = array(
   'description' => _MI_FBCOM_COMBO_DESC,
   'show_func' => 'b_fbcomment_combo_show',
   'edit_func' => 'b_fbcomment_combo_edit',
-  'options' => '0|page,post_id,itemid,topic_id,forum,storyid|0|'.XOOPS_URL.'/|0|450|10|0|0|0|0',
+  'options' => '0|page,post_id,itemid,topic_id,forum,storyid,lid|0|'.XOOPS_URL.'/|0|450|10|0|0|0|0',
   'template' => 'fbcomment_combo_block.html');
 
 
