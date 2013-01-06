@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) die('Root path not defined');
 // Module Info
 
 // The name and description of module
-define('_MI_FBCOM_NAME', 'FBComment');
+define('_MI_FBCOM_NAME', 'FBComments');
 define('_MI_FBCOM_DESC', 'Facebook Comment and Like Blocks for XOOPS');
 
 define('_MI_FBCOM_ADMENU', 'Home');
@@ -37,8 +37,8 @@ define('_MI_FBCOM_COMBO_DESC', 'Facebook like and comment combination block');
 
 // notifications
 
-define ('_MI_FBCOM_GLOBAL_NOTIFY', 'FBComment');
-define ('_MI_FBCOM_GLOBAL_NOTIFY_DESC', "Notifications of FBComment Activity");
+define ('_MI_FBCOM_GLOBAL_NOTIFY', 'FBComments');
+define ('_MI_FBCOM_GLOBAL_NOTIFY_DESC', "Notifications of FBComments Activity");
 
 define ('_MI_FBCOM_COMMENT_NOTIFY', 'newcomment');
 define ('_MI_FBCOM_COMMENT_NOTIFY_CAPTION', 'Comment Made');

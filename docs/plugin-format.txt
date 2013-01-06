@@ -1,11 +1,11 @@
-FBComment Plugin Formats
+FBComments Plugin Formats
 
-FBComment has a simple plugin format to allow module specific generation 
+FBComments has a simple plugin format to allow module specific generation 
 of Open Graph Protocol meta data. This data will be viewable in a page's 
 OG Editor if no other values have been entered, but data entered directly 
 in the editor will take precedence over the plugin supplied data.
 
-An FBComment block will look for a plugin file in the include directory of 
+An FBComments block will look for a plugin file in the include directory of 
 the current module. The file must be named fbcomment_plugin.php
 
 fbcomment_plugin.php must contain a function definition called fbcom_plugin,

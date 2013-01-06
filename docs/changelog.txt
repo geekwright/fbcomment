@@ -1,6 +1,13 @@
-FBComment ChangeLog
+FBComments ChangeLog
 
-=== FBComment Module 1.0 ===
+=== FBComments Module 1.0 ===
+Release date: 2013-01-??
+
+* fix a few typos and various errors in documentation files
+* change defaults on comment block to match other blocks
+* change name to FBComments
+
+=== FBComment Module 1.0 RC ===
 Release date: 2013-01-03
 
 * initial release

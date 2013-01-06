@@ -1,4 +1,4 @@
-fbcomments - a module for Xoops
+FBComments - a module for Xoops
 
 Copyright (C) 2012 geekwright, LLC.
 
