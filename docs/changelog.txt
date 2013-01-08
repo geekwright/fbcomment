@@ -1,7 +1,7 @@
 FBComments ChangeLog
 
-=== FBComments Module 1.0 ===
-Release date: 2013-01-??
+=== FBComments Module 1.0 RC2 ===
+Release date: 2013-01-08
 
 * NEW language constant _MB_FBCOM_SDK_CHANNEL_LOCALE in blocks.php 
 * add missing support for Facebook locales

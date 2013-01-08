@@ -27,10 +27,10 @@ $modversion['dirname'] = basename( dirname( __FILE__ ) ) ;
 // things for ModuleAdmin() class
 $modversion['license_url'] = XOOPS_URL.'/modules/fbcomment/docs/license.txt';
 $modversion['license_url'] = substr($modversion['license_url'],strpos($modversion['license_url'],'//')+2);
-$modversion['release_date']     = '2013/01/03';
+$modversion['release_date']     = '2013/01/08';
 $modversion["module_website_url"] = "geekwright.com";
 $modversion["module_website_name"] = "geekwright.com";
-$modversion["module_status"] = "RC";
+$modversion["module_status"] = "RC2";
 $modversion['min_php']='5.2';
 $modversion['min_xoops']='2.5';
 $modversion['system_menu'] = 1;
