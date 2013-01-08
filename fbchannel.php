@@ -14,5 +14,8 @@
   header("Pragma: public");
   header("Cache-Control: maxage=".$cache_expire);
   header('Expires: '.gmdate('D, d M Y H:i:s', time()+$cache_expire).' GMT');
+  
+  // passing locale should achieve both long cache and localization
+  $locale=empty($_GET['locale'])? 'en_US': $_GET['locale'];
+  echo '<script src="//connect.facebook.net/'.$locale.'/all.js"></script>';
 ?>
-<script src="//connect.facebook.net/en_US/all.js"></script>

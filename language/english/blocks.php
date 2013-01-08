@@ -2,6 +2,10 @@
 // @version    $Id$
 if (!defined('XOOPS_ROOT_PATH')) die('Root path not defined');
 
+// used in blocks/blocks.php and passed to fbchannel.php as path to SDK
+// see https://developers.facebook.com/docs/internationalization/ for options
+define('_MB_FBCOM_SDK_CHANNEL_LOCALE', 'en_US');
+
 define('_MB_FBCOM_HREF_SOURCE' , 'Source of URL sent to Facebook');
 define('_MB_FBCOM_MANUAL_HREF' , 'URL to specify');
 define('_MB_FBCOM_HERE_PARMS' , 'Variables to include in URL sent separated by comma (i.e. \'post_id,page\')');

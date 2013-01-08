@@ -135,7 +135,8 @@ $plugin_env = array();
 	$admins = $moduleConfig['facebook-admins'];
 	
 	// channel for facebook js sdk, see: http://developers.facebook.com/blog/post/530/
-	$block['channel']= XOOPS_URL.'/modules/'.$dir.'/fbchannel.php';
+	$block['channel'] = XOOPS_URL.'/modules/'.$dir.'/fbchannel.php?locale='._MB_FBCOM_SDK_CHANNEL_LOCALE;
+	$block['locale'] = _MB_FBCOM_SDK_CHANNEL_LOCALE;
 	
 	$useSmartyVar = $moduleConfig['use-smarty-for-ogdata'];
 
