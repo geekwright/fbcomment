@@ -1,5 +1,10 @@
 FBComments ChangeLog
 
+=== FBComments Module 1.0 Final ===
+Release date: 2013-01-11
+
+* Promote RC2 to Final
+
 === FBComments Module 1.0 RC2 ===
 Release date: 2013-01-08
 
