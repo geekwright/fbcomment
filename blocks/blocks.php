@@ -218,7 +218,8 @@ $plugin_env = array();
 	// assign everything that may have changed with plugins
 	$block['appid']=$metas['fb:app_id'];
 	$block['admins']=$metas['fb:admins'];
-	$block['href']= urlencode($metas['og:url']);
+//	$block['href']= urlencode($metas['og:url']);  // this uesd to work, but SOME (not all) like buttons break, so trying next line
+	$block['href']= $metas['og:url'];
 
 	return $block;
 }
