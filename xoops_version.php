@@ -12,7 +12,7 @@
 if (!defined('XOOPS_ROOT_PATH')) die('Root path not defined');
 
 $modversion['name'] = _MI_FBCOM_NAME;
-$modversion['version'] = '1.0';
+$modversion['version'] = '1.1';
 $modversion['description'] = _MI_FBCOM_DESC;
 $modversion['author'] = 'Richard Griffith';
 $modversion['credits'] = 'geekwright';
@@ -30,7 +30,7 @@ $modversion['license_url'] = substr($modversion['license_url'],strpos($modversio
 $modversion['release_date']     = '2013/01/11';
 $modversion["module_website_url"] = "geekwright.com";
 $modversion["module_website_name"] = "geekwright.com";
-$modversion["module_status"] = "Final";
+$modversion["module_status"] = "RC";
 $modversion['min_php']='5.2';
 $modversion['min_xoops']='2.5';
 $modversion['system_menu'] = 1;
