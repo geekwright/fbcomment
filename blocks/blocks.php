@@ -26,10 +26,10 @@ global $xoTheme, $xoopsTpl;
 
 	// apply our current meta data
 	$block['ogtype']=$metas['og:type'];
-	$block['ogtitle']=$metas['og:title'];
+	$block['ogtitle']=htmlspecialchars($metas['og:title'], ENT_QUOTES,null,false);
 	$block['ogurl']=$metas['og:url'];
 	$block['ogurlenc']=urlencode($metas['og:url']);
-	$block['ogdescription']=$metas['og:description'];
+	$block['ogdescription']=htmlentities($metas['og:description']);
 	$block['ogimage']=$metas['og:image'];
 	$block['ogsite_name'] = $metas['og:site_name'];
 
