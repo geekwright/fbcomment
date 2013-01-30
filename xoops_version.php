@@ -155,6 +155,15 @@ $modversion['blocks'][] = array(
   'options' => '0|page,post_id,itemid,topic_id,forum,storyid,lid|0|'.XOOPS_URL.'/|0|450|10|0|0|0|0',
   'template' => 'fbcomment_combo_block.html');
 
+$modversion['blocks'][] = array(
+  'file' => 'blocks.php',
+  'name' => _MI_FBCOM_ACTIVITY,
+  'description' => _MI_FBCOM_ACTIVITY_DESC,
+  'show_func' => 'b_fbcomment_activity_show',
+  'edit_func' => 'b_fbcomment_activity_edit',
+  'options' => '||300|300|1|0||0||||0',
+  'template' => 'fbcomment_activity_block.html');
+
 
 // Templates
 $modversion['templates'][1] = array(

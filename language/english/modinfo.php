@@ -50,4 +50,10 @@ define ('_MI_FBCOM_LIKE_NOTIFY_CAPTION', 'Liked');
 define ('_MI_FBCOM_LIKE_NOTIFY_DESC', 'Receive notification when anyone likes something.');
 define ('_MI_FBCOM_LIKE_NOTIFY_SUBJECT', '[{X_SITENAME}] auto-notify : New LIKE');
 
+// new in version 1.1
+
+// support for activity feed
+define('_MI_FBCOM_ACTIVITY', 'Activity Feed');
+define('_MI_FBCOM_ACTIVITY_DESC', 'Facebook activity feed block');
+
 ?>

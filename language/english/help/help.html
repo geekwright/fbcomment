@@ -9,9 +9,9 @@
 
 <h4 class="odd">Overview</h4>
 
-<p class="even"><b>FBComments</b> provides blocks which add Facebook&reg; Like Button and Comments functionality to your site. Page specific comments 
-can be added quickly without requiring any changes to module templates. Open Graph meta tags are automatically added to pages where 
-the blocks are used, and additional page specific data can be easily specified using the built in Open Graph Meta Data editor.
+<p class="even"><b>FBComments</b> provides blocks which add Facebook&reg; Like Button, Comments and Activity Feed functionality to your site. 
+Page specific comments can be added quickly without requiring any changes to module templates. Open Graph meta tags are automatically added 
+to pages where the blocks are used, and additional page specific data can be easily specified using the built in Open Graph Meta Data editor.
 
 <h4 class="odd">First Steps</h4>
 
@@ -22,6 +22,7 @@ the blocks are used, and additional page specific data can be easily specified u
 <ul style="margin-left: 2em;">
 <li><a href="http://developers.facebook.com/docs/reference/plugins/like/"  target="_blank">Like Button</a>
 <li><a href="http://developers.facebook.com/docs/reference/plugins/comments/"  target="_blank">Comments</a>
+<li><a href="http://developers.facebook.com/docs/reference/plugins/activity/"  target="_blank">Activity Feed</a>
 <li><a href="http://developers.facebook.com/docs/opengraphprotocol/"  target="_blank">Open Graph Protocol</a>
 </ul>
 
@@ -94,7 +95,8 @@ current <em>og:url</em> context, so you can check for any issues.
 
 <h4 class="odd">Important Note</h4>
 <p class="even">If you use more than one block on a page, keep in mind that there can only be ONE set of Open Graph data associated 
-with a given page. If the blocks specify different URLs, only one of them will be used.
+with a given page. If the blocks specify different URLs, only one of them will be used. 
+(The Activity Feed block is an exception to this, as it does not establish any open graph data for the page.)
 
 <h4 class="odd">Module Permissions</h4>
 <p class="even">This module does not have a real main page at this time. It consists only of blocks and the necessary scripts to support 

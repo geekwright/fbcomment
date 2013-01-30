@@ -236,7 +236,7 @@ function b_fbcomment_core_edit($options) {
 	if($options[0]==3) $form .="checked='checked'"; 
 	$form .= " />&nbsp;"._MB_FBCOM_HREF_FORCE_HTTP."<br /><br />";
 	// parameter list - options[1]
-	$form .= _MB_FBCOM_HERE_PARMS.": <input type='text' size='50' value='".$options[1]."'id='options[1]' name='options[1]' /><br /><br />";
+	$form .= _MB_FBCOM_HERE_PARMS.": <input type='text' size='50' value='".$options[1]."' id='options[1]' name='options[1]' /><br /><br />";
 	// require parameters - options[2]
 	$form .=_MB_FBCOM_REQ_PARMS.": <input type='radio' name='options[2]' value='1' ";
 	if($options[2]) $form .="checked='checked'"; 
@@ -244,7 +244,7 @@ function b_fbcomment_core_edit($options) {
 	if(!$options[2]) $form .="checked='checked'"; 
 	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
 	// static href - options[3]
-	$form .= _MB_FBCOM_MANUAL_HREF.": <input type='text' value='".$options[3]."'id='options[3]' name='options[3]' /><br /><br />";
+	$form .= _MB_FBCOM_MANUAL_HREF.": <input type='text' value='".$options[3]."' id='options[3]' name='options[3]' /><br /><br />";
 	// colorscheme - options[4]
 	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[4]' value='0' ";
 	if(!$options[4]) $form .="checked='checked'"; 
@@ -252,7 +252,7 @@ function b_fbcomment_core_edit($options) {
 	if($options[4]) $form .="checked='checked'"; 
 	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
 	// parameter list - options[5]
-	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[5]."'id='options[5]' name='options[5]' /><br /><br />";
+	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[5]."' id='options[5]' name='options[5]' /><br /><br />";
 	
 	return $form;
 }
@@ -276,7 +276,7 @@ function b_fbcomment_comment_edit($options) {
 	$form = b_fbcomment_core_edit($options);
 
 	// parameter list - options[6]
-	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[6]."'id='options[6]' name='options[6]' /><br /><br />";
+	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[6]."' id='options[6]' name='options[6]' /><br /><br />";
 
 	return $form;
 }
@@ -402,7 +402,7 @@ function b_fbcomment_combo_edit($options) {
 	$i=6;
 	// comment portion
 	// number of comments to show
-	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[$i]."'id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
 
 	// like
 	// show faces
@@ -438,6 +438,136 @@ function b_fbcomment_combo_edit($options) {
 	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
 	if(!$options[$i]) $form .="checked='checked'"; 
 	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+	return $form;
+}
+
+//activity
+function b_fbcomment_activity_show($options) {
+	// set up the basics needed to use the sdk init
+	// note we do not establish the open graph data for the page with this block. It isn't required for this plugin, so
+	// one of the other blocks can do it, and we won't interfere.
+	$dir = basename( dirname ( dirname( __FILE__ ) ) ) ;
+	// Access module configs from block:
+	$module_handler = xoops_gethandler('module');
+	$module         = $module_handler->getByDirname($dir);
+	$config_handler = xoops_gethandler('config');
+	$moduleConfig   = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+
+	$block['appid']=$moduleConfig['facebook-appid'];
+	// channel for facebook js sdk, see: http://developers.facebook.com/blog/post/530/
+	$block['channel'] = XOOPS_URL.'/modules/'.$dir.'/fbchannel.php?locale='._MB_FBCOM_SDK_CHANNEL_LOCALE;
+	$block['locale'] = _MB_FBCOM_SDK_CHANNEL_LOCALE;
+
+	$block['site']=(empty($options[0]))?'':' data-site="'.$options[0].'"';
+	
+	$block['action']=(empty($options[1])?'':' data-action="'.$options[1].'"');
+	
+	$value=intval($options[2]);
+	if($value<50) $value=300;
+	$block['width']=' data-width="'.$value.'"';
+	
+	$value=intval($options[3]);
+	if($value<50) $value=300;
+	$block['height']=' data-height="'.$value.'"';
+	
+	if(!$options[4]) $block['header']=' data-header="dark"';
+	else $block['header']='';
+	
+	if($options[5]) $block['colorscheme']=' data-colorscheme="dark"';
+	else $block['colorscheme']='';
+
+	$block['font']=(empty($options[6])?'':' data-font="'.$options[6].'"');
+
+	if($options[7]) $block['recommendations']=' data-recommendations="true"';
+	else $block['recommendations']='';
+
+	$block['filter']=(empty($options[8])?'':' data-filter="'.$options[8].'"');
+
+	$block['linktarget']=(empty($options[9])?'':' data-linktarget="'.$options[9].'"');
+	$block['ref']=(empty($options[10])?'':' data-ref="'.$options[10].'"');
+
+	$value=intval($options[11]);
+	if($value>180) $value=180;
+	$block['max_age']=($options[10]<1)?'':' data-max_age="'.$value.'"';
+
+	return $block;
+}
+
+function b_fbcomment_activity_edit($options) {
+	$i=-1;
+	$form='';
+
+	$i += 1;
+	$form .= _MB_FBCOM_ACTIVITY_DOMAIN.": <input type='text' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// action - a comma separated list of actions to show activities for.
+	$i += 1;
+	$form .= _MB_FBCOM_ACTIVITY_ACTIONS.": <input type='text' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// width - the width of the plugin in pixels. Default width: 300px.
+	$i += 1;
+	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// height - the height of the plugin in pixels. Default height: 300px.
+	$i += 1;
+	$form .= _MB_FBCOM_HEIGHT.": <input type='text' size='5' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// header - specifies whether to show the Facebook header.
+	$i += 1;
+	$form .=_MB_FBCOM_SHOW_HEADER.": <input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+	// colorscheme - the color scheme for the plugin. Options: 'light', 'dark'
+	$i += 1;
+	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_LIGHT."&nbsp;<input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
+
+	// font - the font to display in the plugin. Options: 'arial', 'lucida grande', 'segoe ui', 'tahoma', 'trebuchet ms', 'verdana'
+	// _MB_FBCOM_FONT
+	$i += 1;
+	$values=array('', 'arial', 'lucida grande', 'segoe ui', 'tahoma', 'trebuchet ms', 'verdana');
+	$form .= _MB_FBCOM_FONT . " <select id='options[{$i}]' name='options[{$i}]'>";
+	foreach($values as $value) {
+		$form.='<option value="'.$value.'"'.($options[$i]==$value?' selected':'').'>'.$value.'</option>';
+	}
+	$form .= '</select><br /><br />';
+
+	
+	// recommendations - specifies whether to always show recommendations in the plugin. If recommendations is set to true, the plugin will display recommendations in the bottom half.
+	$i += 1;
+	$form .=_MB_FBCOM_SHOW_RECOMMENDATIONS.": <input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+	// filter - allows you to filter which URLs are shown in the plugin. The plugin will only include URLs which contain the filter string in the first two path parameters of the URL. If nothing in the first two path parameters of the URL matches the filter, the URL will not be included. For example, if the 'site' parameter is set to 'www.example.com' and the 'filter' parameter was set to '/section1/section2' then only pages which matched 'http://www.example.com/section1/section2/*' would be included in the activity feed section of this plugin. The filter parameter does not apply to any recommendations which may appear in this plugin (see above); Recommendations are based only on 'site' parameter.
+	$i += 1;
+	$form .= _MB_FBCOM_ACTIVITY_FILTER.": <input type='text' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// linktarget - This specifies the context in which content links are opened. By default all links within the plugin will open a new window. If you want the content links to open in the same window, you can set this parameter to _top or _parent. Links to Facebook URLs will always open in a new window.
+	$i += 1;
+	$values=array('','_blank','_top','_parent');
+	$form .= _MB_FBCOM_LINK_TARGET . " <select id='options[{$i}]' name='options[{$i}]'>";
+	foreach($values as $value) {
+		$form.='<option value="'.$value.'"'.($options[$i]==$value?' selected':'').'>'.$value.'</option>';
+	}
+	$form .= '</select><br /><br />';
+
+	// ref - a label for tracking referrals; must be less than 50 characters and can contain alphanumeric characters and some punctuation (currently +/=-.:_). Specifying a value for the ref attribute adds the 'fb_ref' parameter to the any links back to your site which are clicked from within the plugin. Using different values for the ref parameter for different positions and configurations of this plugin within your pages allows you to track which instances are performing the best.
+	$i += 1;
+	$form .= _MB_FBCOM_REF_LABEL.": <input type='text' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// max_age - a limit on recommendation and creation time of articles that are surfaced in the plugins, the default is 0 (we don’t take age into account). Otherwise the valid values are 1-180, which specifies the number of days.
+	$i += 1;
+	$form .= _MB_FBCOM_ACTIVITY_AGE.": <input type='text' size='5' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
 
 	return $form;
 }

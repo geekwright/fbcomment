@@ -45,4 +45,17 @@ define('_MB_FBCOM_OGEDIT_OGDESC', 'Description');
 define('_MB_FBCOM_OGEDIT_UPDATE', 'Update Data');
 define('_MB_FBCOM_OGEDIT_DEBUGGER', '<img src="' . XOOPS_URL . '/modules/fbcomment/images/ogcheck.png" title="OG Object Debugger" alt="(Debug)" />');
 
+// new in version 1.1
+
+// support for activity feed
+define('_MB_FBCOM_ACTIVITY_DOMAIN' , 'Domain for Activity');
+define('_MB_FBCOM_ACTIVITY_ACTIONS' , 'Action to include (comma separated list)');
+define('_MB_FBCOM_HEIGHT' , 'Height of Facebook plugin in pixels');
+define('_MB_FBCOM_SHOW_HEADER' , 'Show Facebook Header');
+define('_MB_FBCOM_FONT' , 'Font for plugin display');
+define('_MB_FBCOM_SHOW_RECOMMENDATIONS' , 'Always show Recommendations');
+define('_MB_FBCOM_ACTIVITY_FILTER' , 'URL filter within domain (i.e. modules/news)');
+define('_MB_FBCOM_LINK_TARGET' , 'Link target for in domain links');
+define('_MB_FBCOM_REF_LABEL' , 'Referral tracking label (50 char max, alphanumeric and "+/=-.:_")');
+define('_MB_FBCOM_ACTIVITY_AGE' , 'Age limit on activity shown in day (0-180, 0=no limit');
 ?>

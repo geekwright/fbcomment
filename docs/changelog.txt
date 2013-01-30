@@ -1,8 +1,9 @@
 FBComments ChangeLog
 
 === FBComments Module 1.1 wip ===
-Release date: 2013-01-26
+Release date: 2013-01-30
 
+* Add Activity Feed block (added new language constants, bottom of blocks.php and modinfo.php)
 * Fix Like Button error in some installations
 * Fix special charachter issues in OG editor
 * Fix broken link in help
