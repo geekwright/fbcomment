@@ -1,9 +1,13 @@
 FBComments ChangeLog
 
 === FBComments Module 1.1 wip ===
-Release date: 2013-01-30
+Release date: 2013-02-??
 
-* Add Activity Feed block (added new language constants, bottom of blocks.php and modinfo.php)
+* Add Show Feed block - added Facebook's PHP-SDK to support
+* New config option for app secret, needed for Facebook PHP-SDK
+* Add Post To Feed Dialog block
+* Add Activity Feed block 
+* For new blocks added new language constants, bottom of blocks.php and modinfo.php
 * Fix Like Button error in some installations
 * Fix special charachter issues in OG editor
 * Fix broken link in help

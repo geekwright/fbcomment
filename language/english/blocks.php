@@ -58,4 +58,13 @@ define('_MB_FBCOM_ACTIVITY_FILTER' , 'URL filter within domain (i.e. modules/new
 define('_MB_FBCOM_LINK_TARGET' , 'Link target for in domain links');
 define('_MB_FBCOM_REF_LABEL' , 'Referral tracking label (50 char max, alphanumeric and "+/=-.:_")');
 define('_MB_FBCOM_ACTIVITY_AGE' , 'Age limit on activity shown in day (0-180, 0=no limit');
+
+// support for post to feed
+define('_MB_FBCOM_POST_TO_FEED', 'Post this to Facebook');
+define('_MB_FBCOM_POST_OK', 'OK');
+define('_MB_FBCOM_POST_ERROR', 'Error');
+
+// support for show feed
+define('_MB_FBCOM_SHOW_FEED_ID', 'Feed id to show'); 
+define('_MB_FBCOM_SHOW_FEED_MAX', 'Number of posts to show'); 
 ?>

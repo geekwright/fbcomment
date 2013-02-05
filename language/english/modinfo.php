@@ -52,8 +52,18 @@ define ('_MI_FBCOM_LIKE_NOTIFY_SUBJECT', '[{X_SITENAME}] auto-notify : New LIKE'
 
 // new in version 1.1
 
-// support for activity feed
+// new config option
+define('_MI_FBCOM_CONFIG_FBAPPSECRET','Secret for Facebook App Id');
+define('_MI_FBCOM_CONFIG_FBAPPSECRET_DESC','Secret for App Id (only needed if using Show Feed ');
+
+// support for new blocks
 define('_MI_FBCOM_ACTIVITY', 'Activity Feed');
 define('_MI_FBCOM_ACTIVITY_DESC', 'Facebook activity feed block');
+
+define('_MI_FBCOM_FEED_POST', 'Post To Feed');
+define('_MI_FBCOM_FEED_POST_DESC', "Post page to user's Facebook newsfeed");
+
+define('_MI_FBCOM_SHOW_FEED', 'Show Feed');
+define('_MI_FBCOM_SHOW_FEED_DESC', 'Show recent activity on a specific Facebook feed');
 
 ?>

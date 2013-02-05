@@ -20,8 +20,7 @@ if(!empty($b_fbcomment_caller_name)) {
   if (file_exists($b_fbcomment_caller_name)) include_once $b_fbcomment_caller_name;
 }
 
-
-function b_fbcomment_addfiledropform($smartyVar,$metas,&$block) {
+function b_fbcomment_addfiledropform($metas,&$block) {
 global $xoTheme, $xoopsTpl;
 
 	// apply our current meta data
@@ -56,7 +55,7 @@ global $xoTheme, $xoopsTpl;
 }
 
 // 'core' functions handle attributes common to both facebook comment and like button apis
-function b_fbcomment_core_show($options,$LikeOrCom) {
+function b_fbcomment_core_show($options) {
 global $xoopsTpl, $xoTheme, $xoopsUser, $xoopsDB;
 
 $plugin_env = array();
@@ -106,15 +105,6 @@ $plugin_env = array();
 		break;
 	}
 	
-	if($options[4]) $ourcolor=' data-colorscheme="dark"';
-	else $ourcolor='';
-	$block['colorscheme']=$ourcolor;
-	
-	$intwidth=intval($options[5]);
-	if($intwidth < 1) $ourwidth="";
-	else $ourwidth=' data-width="'.$intwidth.'"';
-	$block['width']=$ourwidth;
-
 
 // Now that we are definitely showing a block, supply meta tags the Facebook wants to see
 
@@ -189,7 +179,8 @@ $plugin_env = array();
 			if(!empty($myrow['description'])) $metas['og:description']=$myrow['description'];
 		}
 	}
-
+	
+	$metas['og:description']=str_replace(array("\r\n", "\n", "\r"), ' ', $metas['og:description']);
 	$ourtags='';
 	foreach ($metas as $property => $content) {
 	    if($useSmartyVar) {
@@ -210,7 +201,7 @@ $plugin_env = array();
 
 	// add our editor for open graph meta data
 	if(is_object($xoopsUser) && $xoopsUser->isAdmin($module->getVar('mid'))) {	
-	    b_fbcomment_addfiledropform('fbc_dd_form_'.$LikeOrCom,$metas,$block);
+	    b_fbcomment_addfiledropform($metas,$block);
 	 }
 
 	if($useSmartyVar) $xoopsTpl->assign('fbcomment_og_metas', $ourtags);
@@ -245,22 +236,23 @@ function b_fbcomment_core_edit($options) {
 	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
 	// static href - options[3]
 	$form .= _MB_FBCOM_MANUAL_HREF.": <input type='text' value='".$options[3]."' id='options[3]' name='options[3]' /><br /><br />";
-	// colorscheme - options[4]
-	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[4]' value='0' ";
-	if(!$options[4]) $form .="checked='checked'"; 
-	$form .=" />&nbsp;"._MB_FBCOM_LIGHT."&nbsp;<input type='radio' name='options[4]' value='1' ";
-	if($options[4]) $form .="checked='checked'"; 
-	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
-	// parameter list - options[5]
-	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[5]."' id='options[5]' name='options[5]' /><br /><br />";
 	
 	return $form;
 }
 
 function b_fbcomment_comment_show($options) {
 
-	$block=b_fbcomment_core_show($options,'comment');
+	$block=b_fbcomment_core_show($options);
 	if($block==false) return false;
+
+	if($options[4]) $ourcolor=' data-colorscheme="dark"';
+	else $ourcolor='';
+	$block['colorscheme']=$ourcolor;
+	
+	$intwidth=intval($options[5]);
+	if($intwidth < 1) $ourwidth="";
+	else $ourwidth=' data-width="'.$intwidth.'"';
+	$block['width']=$ourwidth;
 
 	$intposts=intval($options[6]);
 	if($intposts < 1) $intposts="10";
@@ -274,7 +266,17 @@ function b_fbcomment_comment_show($options) {
 function b_fbcomment_comment_edit($options) {
 
 	$form = b_fbcomment_core_edit($options);
-
+	
+	// colorscheme - options[4]
+	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[4]' value='0' ";
+	if(!$options[4]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_LIGHT."&nbsp;<input type='radio' name='options[4]' value='1' ";
+	if($options[4]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
+	
+	// parameter list - options[5]
+	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[5]."' id='options[5]' name='options[5]' /><br /><br />";
+	
 	// parameter list - options[6]
 	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[6]."' id='options[6]' name='options[6]' /><br /><br />";
 
@@ -284,6 +286,15 @@ function b_fbcomment_comment_edit($options) {
 function b_fbcomment_like_show($options) {
 
 	if(!$block=b_fbcomment_core_show($options,'like')) return false;
+
+	if($options[4]) $ourcolor=' data-colorscheme="dark"';
+	else $ourcolor='';
+	$block['colorscheme']=$ourcolor;
+	
+	$intwidth=intval($options[5]);
+	if($intwidth < 1) $ourwidth="";
+	else $ourwidth=' data-width="'.$intwidth.'"';
+	$block['width']=$ourwidth;
 
 	if($options[6]) $ourfaces=' data-show-faces="true"';
 	else $ourfaces=' data-show-faces="false"';
@@ -317,6 +328,16 @@ function b_fbcomment_like_edit($options) {
 
 	$form = b_fbcomment_core_edit($options);
 
+	// colorscheme - options[4]
+	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[4]' value='0' ";
+	if(!$options[4]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_LIGHT."&nbsp;<input type='radio' name='options[4]' value='1' ";
+	if($options[4]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
+	
+	// parameter list - options[5]
+	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[5]."' id='options[5]' name='options[5]' /><br /><br />";
+	
 	// show faces - options[6]
 	$form .=_MB_FBCOM_LIKE_FACES.": <input type='radio' name='options[6]' value='1' ";
 	if($options[6]) $form .="checked='checked'"; 
@@ -352,7 +373,7 @@ function b_fbcomment_like_edit($options) {
 
 function b_fbcomment_combo_show($options) {
 
-	if(!$block=b_fbcomment_core_show($options,'like')) return false;
+	if(!$block=b_fbcomment_core_show($options)) return false;
 
 	$i=6;
 	
@@ -572,4 +593,114 @@ function b_fbcomment_activity_edit($options) {
 	return $form;
 }
 
+function b_fbcomment_feed_post_show($options) {
+	if(!$block=b_fbcomment_core_show($options)) return false;
+	return $block;
+}
+
+function b_fbcomment_feed_post_edit($options) {
+	$form = b_fbcomment_core_edit($options);
+	return $form;
+}
+
+// include facebook php sdk
+require_once XOOPS_ROOT_PATH.'/modules/fbcomment/include/facebook/facebook.php';
+
+function b_fbcomment_show_feed_show($options) {
+global $xoTheme;
+	
+	// set up the basics needed to use the sdk init
+	// note we do not establish the open graph data for the page with this block.
+	$dir = basename( dirname ( dirname( __FILE__ ) ) ) ;
+	// Access module configs from block:
+	$module_handler = xoops_gethandler('module');
+	$module         = $module_handler->getByDirname($dir);
+	$config_handler = xoops_gethandler('config');
+	$moduleConfig   = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+
+	$block['appid']=$moduleConfig['facebook-appid'];
+
+	$config = array();
+	$config['appId'] = $moduleConfig['facebook-appid'];
+	$config['secret'] = $moduleConfig['facebook-appsecret'];
+//	$config['fileUpload'] = false; // optional
+
+	$facebook = new Facebook($config);
+
+	$facebook_access_token = $facebook->getAccessToken();
+
+	$id=$options[0];
+	$limit=intval($options[1]);
+	if($limit<1) $limit=1;
+
+	try {
+		$page = $facebook->api('/'.$id);
+	} catch (FacebookApiException $e) {
+		$result = $e->getResult();
+		//echo '<pre>'.print_r($e).'</pre>';
+		return false;
+	}
+	
+	$block['page']=$page;
+	$default_link=$page['link'];
+
+/*
+$ret = $facebook->api($path, $method, $params);
+
+Name 	Description
+path 	The Graph API path for the request, e.g. "/me" for the logged in user's profile.
+method 	(optional) Specify the HTTP method for this request: 'GET', 'POST', or 'DELETE'.
+params 	(optional) Parameters specific to the particular Graph API method you are calling. Passed in as an associative array of 'name' => 'value' pairs.
+*/
+
+// $response=file_get_contents("https://graph.facebook.com/".$id."/feed?access_token=".$facebook_access_token);
+// $response_array=json_decode($response,true);
+
+// http://graph.facebook.com/(user)/picture
+
+	try {
+		$feed = $facebook->api('/'.$id.'/feed','GET',array('access_token' => $facebook_access_token, 'limit' => $limit));
+	} catch (FacebookApiException $e) {
+		//echo '<pre>'; print_r($e); echo '</pre>';
+		return false;
+	}
+	
+	if(empty($feed['data'])) return false;
+	$data=$feed['data'];
+
+	foreach($data as $i=>$item) {
+		$data[$i]['display_time']=date('Y-m-d', strtotime($data[$i]['created_time']));
+		try {
+			$plink = $facebook->api( array(
+				'method' => 'fql.query',
+				'query' => 'select permalink from stream where post_id="'.$item['id'].'"',
+				));
+		} catch (FacebookApiException $e) {
+			$plink=array();
+			$plink[0]['permalink']=$default_link;
+		}
+		$data[$i]['permalink']=$plink[0]['permalink'];
+		if(empty($data[$i]['permalink'])) $data[$i]['permalink']=$default_link;
+	}
+	$block['feed']=$data;
+	
+	$block['style']="<style>\n".file_get_contents(XOOPS_ROOT_PATH.'/modules/fbcomment/showfeed.css')."\n</style>\n";
+	//$xoTheme->addStyleSheet(XOOPS_URL.'/modules/fbcomment/showfeed.css');
+
+	return $block;
+ 
+}
+
+function b_fbcomment_show_feed_edit($options) {
+
+	$form='';
+
+	// id - facebook id of feed to be shown
+	$form .= _MB_FBCOM_SHOW_FEED_ID.": <input type='text' value='".$options[0]."' id='options[0]' name='options[0]' /><br /><br />";
+
+	// limit - max number of posts to show
+	$form .= _MB_FBCOM_SHOW_FEED_MAX.": <input type='text' size='5' value='".$options[1]."' id='options[1]' name='options[1]' /><br /><br />";
+
+	return $form;
+}
 ?>

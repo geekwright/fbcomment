@@ -99,6 +99,15 @@ $modversion['config'][] = array(
 	'options'		=> array()
 ) ;
 $modversion['config'][] = array(
+	'name'			=> 'facebook-appsecret' ,
+	'title'			=> '_MI_FBCOM_CONFIG_FBAPPSECRET' ,
+	'description'		=> '_MI_FBCOM_CONFIG_FBAPPSECRET_DESC' ,
+	'formtype'		=> 'textbox' ,
+	'valuetype'		=> 'text' ,
+	'default'		=> '' ,
+	'options'		=> array()
+) ;
+$modversion['config'][] = array(
 	'name'			=> 'use-smarty-for-ogdata' ,
 	'title'			=> '_MI_FBCOM_CONFIG_ENABLE_SMARTY_METAS' ,
 	'description'		=> '_MI_FBCOM_CONFIG_ENABLE_SMARTY_METAS_DESC' ,
@@ -163,6 +172,24 @@ $modversion['blocks'][] = array(
   'edit_func' => 'b_fbcomment_activity_edit',
   'options' => '||300|300|1|0||0||||0',
   'template' => 'fbcomment_activity_block.html');
+
+$modversion['blocks'][] = array(
+  'file' => 'blocks.php',
+  'name' => _MI_FBCOM_FEED_POST,
+  'description' => _MI_FBCOM_FEED_POST_DESC,
+  'show_func' => 'b_fbcomment_feed_post_show',
+  'edit_func' => 'b_fbcomment_feed_post_edit',
+  'options' => '0|page,post_id,itemid,topic_id,forum,storyid,lid|0|'.XOOPS_URL.'/',
+  'template' => 'fbcomment_feed_post_block.html');
+
+$modversion['blocks'][] = array(
+  'file' => 'blocks.php',
+  'name' => _MI_FBCOM_SHOW_FEED,
+  'description' => _MI_FBCOM_SHOW_FEED_DESC,
+  'show_func' => 'b_fbcomment_show_feed_show',
+  'edit_func' => 'b_fbcomment_show_feed_edit',
+  'options' => 'me|5',
+  'template' => 'fbcomment_show_feed_block.html');
 
 
 // Templates
