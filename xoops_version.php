@@ -188,8 +188,17 @@ $modversion['blocks'][] = array(
   'description' => _MI_FBCOM_SHOW_FEED_DESC,
   'show_func' => 'b_fbcomment_show_feed_show',
   'edit_func' => 'b_fbcomment_show_feed_edit',
-  'options' => 'me|5',
+  'options' => '|5',
   'template' => 'fbcomment_show_feed_block.html');
+
+$modversion['blocks'][] = array(
+  'file' => 'blocks.php',
+  'name' => _MI_FBCOM_LIKEBOX,
+  'description' => _MI_FBCOM_LIKEBOX_DESC,
+  'show_func' => 'b_fbcomment_likebox_show',
+  'edit_func' => 'b_fbcomment_likebox_edit',
+  'options' => '|300|||1|1|1||0',
+  'template' => 'fbcomment_likebox_block.html');
 
 
 // Templates

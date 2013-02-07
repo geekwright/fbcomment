@@ -60,6 +60,9 @@ define('_MI_FBCOM_CONFIG_FBAPPSECRET_DESC','Secret for App Id (only needed if us
 define('_MI_FBCOM_ACTIVITY', 'Activity Feed');
 define('_MI_FBCOM_ACTIVITY_DESC', 'Facebook activity feed block');
 
+define('_MI_FBCOM_LIKEBOX','Like Box');
+define('_MI_FBCOM_LIKEBOX_DESC','Show Like Box for a Facebook Page');
+
 define('_MI_FBCOM_FEED_POST', 'Post To Feed');
 define('_MI_FBCOM_FEED_POST_DESC', "Post page to user's Facebook newsfeed");
 

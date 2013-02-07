@@ -59,6 +59,12 @@ define('_MB_FBCOM_LINK_TARGET' , 'Link target for in domain links');
 define('_MB_FBCOM_REF_LABEL' , 'Referral tracking label (50 char max, alphanumeric and "+/=-.:_")');
 define('_MB_FBCOM_ACTIVITY_AGE' , 'Age limit on activity shown in day (0-180, 0=no limit');
 
+// like box
+define('_MB_FBCOM_LIKEBOX_PAGE_URL' , 'URL of the Facebook Page for this Like Box');
+define('_MB_FBCOM_SHOW_STREAM', 'Display stream of the latest posts from the Page');
+define('_MB_FBCOM_BORDER_COLOR', 'Border Color for Plugin');
+define('_MB_FBCOM_FORCE_WALL', 'For Places, force wall posts instead of just checkins.');
+   
 // support for post to feed
 define('_MB_FBCOM_POST_TO_FEED', 'Post this to Facebook');
 define('_MB_FBCOM_POST_OK', 'OK');

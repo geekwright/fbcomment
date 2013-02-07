@@ -593,6 +593,122 @@ function b_fbcomment_activity_edit($options) {
 	return $form;
 }
 
+// Likebox
+function b_fbcomment_likebox_show($options) {
+	// set up the basics needed to use the sdk init
+	// note we do not establish the open graph data for the page with this block. It isn't required for this plugin, so
+	// one of the other blocks can do it, and we won't interfere.
+	$dir = basename( dirname ( dirname( __FILE__ ) ) ) ;
+	// Access module configs from block:
+	$module_handler = xoops_gethandler('module');
+	$module         = $module_handler->getByDirname($dir);
+	$config_handler = xoops_gethandler('config');
+	$moduleConfig   = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+
+	$block['appid']=$moduleConfig['facebook-appid'];
+	// channel for facebook js sdk, see: http://developers.facebook.com/blog/post/530/
+	$block['channel'] = XOOPS_URL.'/modules/'.$dir.'/fbchannel.php?locale='._MB_FBCOM_SDK_CHANNEL_LOCALE;
+	$block['locale'] = _MB_FBCOM_SDK_CHANNEL_LOCALE;
+
+	// facebook page
+	$block['href']=' data-href="'.$options[0].'"';
+	
+	$value=intval($options[1]);
+	if($value<50) $value=300;
+	$block['width']=' data-width="'.$value.'"';
+	
+	$value=intval($options[2]);
+	if($value) $block['height']=' data-height="'.$value.'"';
+	
+	if($options[3]) $block['colorscheme']=' data-colorscheme="dark"';
+	else $block['colorscheme']='';
+
+	if($options[4]) $value=' data-show-faces="true"';
+	else $value=' data-show-faces="false"';
+	$block['faces']=$value;
+
+	if($options[5]) $value=' data-stream="true"';
+	else $value=' data-stream="false"';
+	$block['stream']=$value;
+
+	if($options[6]) $value=' data-header="true"';
+	else $value=' data-header="false"';
+	$block['header']=$value;
+
+	$block['border']=(empty($options[7]))?'':' data-border-color="'.$options[7].'"';
+
+	if($options[8]) $value=' data-force-wall="true"';
+	else $value=' data-force-wall="false"';
+	$block['forcewall']=$value;
+
+	echo "<pre>"; print_r($options); print_r($block); echo "</pre>";
+	return $block;
+}
+
+function b_fbcomment_likebox_edit($options) {
+	$i=-1;
+	$form='';
+
+	// url of facebook page
+	$i += 1;
+	$form .= _MB_FBCOM_LIKEBOX_PAGE_URL.": <input type='text' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// width - the width of the plugin in pixels. Default width: 300px.
+	$i += 1;
+	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// height - the height of the plugin in pixels. Default height: 300px.
+	$i += 1;
+	$form .= _MB_FBCOM_HEIGHT.": <input type='text' size='5' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// colorscheme - the color scheme for the plugin. Options: 'light', 'dark'
+	$i += 1;
+	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_LIGHT."&nbsp;<input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
+
+	// show faces
+	$i += 1;
+	$form .=_MB_FBCOM_LIKE_FACES.": <input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+	//show stream
+	$i += 1;
+	$form .=_MB_FBCOM_SHOW_STREAM.": <input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+	// header - specifies whether to show the Facebook header.
+	$i += 1;
+	$form .=_MB_FBCOM_SHOW_HEADER.": <input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+	// border_color
+	$i += 1;
+	$form .= _MB_FBCOM_BORDER_COLOR.": <input type='text' size='8' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
+	// force_wall - for Places, specifies whether the stream contains posts from the Place's wall or just checkins from friends.
+	$i += 1;
+	$form .=_MB_FBCOM_FORCE_WALL.": <input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_YES."&nbsp;<input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
+
+
+	return $form;
+}
+
 function b_fbcomment_feed_post_show($options) {
 	if(!$block=b_fbcomment_core_show($options)) return false;
 	return $block;
