@@ -17,21 +17,25 @@ to pages where the blocks are used, and additional page specific data can be eas
 
 <p class="even">Although not strictly necessary, you may want to register <i>yourself as a developer</i> (and <i>optionally, your site as an application</i>) on <a href="http://developers.facebook.com/" target="_blank">http://developers.facebook.com/</a>.
 
-<p class="even">Familiarize yourself with the Facebook Social Plugins you are going to use. These resources may be helpful:
+<p class="even">Familiarize yourself with the Facebook concepts and Social Plugins you are going to use. These resources may be helpful:
 
 <ul style="margin-left: 2em;">
 <li><a href="http://developers.facebook.com/docs/reference/plugins/like/"  target="_blank">Like Button</a>
 <li><a href="http://developers.facebook.com/docs/reference/plugins/comments/"  target="_blank">Comments</a>
 <li><a href="http://developers.facebook.com/docs/reference/plugins/activity/"  target="_blank">Activity Feed</a>
+<li><a href="http://developers.facebook.com/docs/reference/plugins/like-box/"  target="_blank">Like Box</a>
 <li><a href="http://developers.facebook.com/docs/opengraphprotocol/"  target="_blank">Open Graph Protocol</a>
+<li><a href="http://developers.facebook.com/docs/reference/dialogs/feed/"  target="_blank">Feed Dialog</a>
 </ul>
 
 <h4 class="odd">Configuration</h4>
-Enter <b>either</b> (not both) your numeric facebook user id (<a href="http://findmyfacebookid.com/" target="_blank">Here 
+<p class="even">Enter <b>either</b> (not both) your numeric facebook user id (<a href="http://findmyfacebookid.com/" target="_blank">Here 
 is a tool to help find that.</a>) as an admin or your assigned application id in the module preferences. If you don't, things 
 will still function, but the Facebook debugger will complain, and you will not be able to moderate comments left on your pages. 
 You can specify multiple admins by entering multiple numeric facebook user ids separated by commas, but be aware that this will 
-only work correctly if you enable the smarty open graph meta data option as described next.
+only work correctly if you enable the smarty open graph meta data option as described below.
+<p class="even">To use the Show Feed block, you must enter both an applid and the secret for the appid in the module preferences. 
+This is a requirement of the Facebook SDK for PHP which is used to implement this block.
 
 <p class="even">For the best results, add the following Smarty tag to the <i>&lt;head&gt;</i> section of your theme's theme.html:
 <pre style="font-family: courier,mono;">
@@ -59,7 +63,8 @@ target="_blank">http://developers.facebook.com/tools/debug</a> to check for prob
 <p class="even">Most of the options are explained in the Facebook social plugin documentation mentioned above, and control how the plugin is 
 displayed on your site.
 
-<p class="even">The option requiring the most attention is the "Source of URL sent to Facebook." Each page where a like or comment block is displayed needs to supply 
+<p class="even">The option requiring the most attention is the "Source of URL sent to Facebook." Each page where a 
+like, comment or post to feed block is displayed needs to supply 
 a URL (the <em>og:url</em> property) to Facebook to identify what is being 'Liked' or 'Commented'. You can specify a specific URL (so, 
 for example, a like button will like the whole site) or use the Automatic URL and Variables options to build canonical URLs for the pages 
 (so that each page gets its own comments, for example.)
@@ -81,7 +86,6 @@ a single URL (so "https://example.com/" becomes "http://example.com/".)
 <p class="even">You can also require that something from the variable whitelist be found in the URL before the comments are enabled. This feature can
 be used to allow comments on articles while keepings them off of the index page and other such places where they might not be appropriate.
 
-
 <h4 class="odd">Open Graph Protocol Meta Data Editor</h4>
 <p class="even">If you have admin rights to the FBComments module, FBComments blocks will display an clickable icon to bring up the 
 meta data editor for the <em>og:url</em> that is presented by the page. In this editor you can upload an image to be associated with 
@@ -92,6 +96,19 @@ FBComments module configuration (default image,) a module plugin, or be set by a
 If supported by your browser, changes are registered as made, and you can drag and drop an image file onto the editor to change it.
 Clicking on the checkmark icon beside the URL (near the bottom of the editor display) will invoke the Facebook debugger for the 
 current <em>og:url</em> context, so you can check for any issues.
+
+<h4 class="odd">Blocks Summary Matrix</h>
+<p class="even"><table>
+<tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th colspan="2">Requires</th></tr>
+<tr><th>Block</th><th>Type</th><th>Sets OG Data</th><th>Appid</th><th>Secret</th></tr>
+<tr><td>Comment</td><td>Social Plugin</td><td>Yes</td><td>optional</td><td>no</td></tr>
+<tr><td>Like</td><td>Social Plugin</td><td>Yes</td><td>optional</td><td>no</td></tr>
+<tr><td>Combination</td><td>Social Plugin (x2)</td><td>Yes</td><td>optional</td><td>no</td></tr>
+<tr><td>Activity Feed</td><td>Social Plugin</td><td>No</td><td>no</td><td>no</td></tr>
+<tr><td>Like Box</td><td>Social Plugin</td><td>No</td><td>no</td><td>no</td></tr>
+<tr><td>Post To Feed</td><td>Dialog</td><td>Yes</td><td>optional</td><td>no</td></tr>
+<tr><td>Show Feed</td><td>Custom PHP</td><td>No</td><td>required</td><td>required</td></tr>
+</table>
 
 <h4 class="odd">Important Note</h4>
 <p class="even">If you use more than one block on a page, keep in mind that there can only be ONE set of Open Graph data associated 
@@ -111,6 +128,14 @@ the fbcomment directory which use the standard mainfile inclusion which adds a l
 If blocks are not visible, the meta data Facebook expects will not be exposed, and the results will be less than optimal.
 
 <p class="even">Module administration permissions enable in-block editing of Open Graph meta data.
+
+<h4 class="odd">Caching</h4>
+<p class="even">In general, fbcomments blocks should not be cached. These blocks set page meta data outside the confines of the blocks 
+themselves and they can change their content based on the page context in which they are displayed. Further, the majority of the 
+block content comes not from block, but from the Facebook content loaded through javascript.
+<p class="even">The <strong>exception</strong> to this rule is the "Show Feed" block. This block is generated entirely within the CMS 
+itself by making calls to the Facebook API. This can be a resource intensive operation, and caching will provide significant performance 
+enhancement. Choose the highest cache time that is reasonable for your feed's typical activity level.
 
 <h4 class="odd">Plugins</h4>
 <p class="even">It is possible to extend the default Open Graph data for a module through the use of plugins. Plugins can supply 

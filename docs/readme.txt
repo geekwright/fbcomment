@@ -39,19 +39,25 @@ Module administration permissions enable in-block editing of
 Open Graph meta data. Click on the Open Graph icon in the 
 lower right of a FBComments block display to access it.
 
-Three blocks are available.
+The following blocks are available.
 
-Comment     - Facebook comments
-Like        - Facebook like button
-Combo       - Facebook like button and comments in a single block
-
-These blocks can be cloned as needed.
+Comment       - Facebook comments
+Like          - Facebook like button
+Combo         - Facebook like button and comments in a single block
+Activity Feed - Facebook Activity Feed for a domain
+Like Box      - Facebook Like Box for a Facebook Page
+Post to Feed  - Post to user's Facebook Feed
+Show Feed     - Show the latest posts from a specified newsfeed
 
 Notes
 =====
 
 This module has been tested in XOOPS version 2.5.5. and ImpressCMS
 version 1.2.7 and 1.3.4.
+
+This module includes the Facebook SDK for PHP which is licensed 
+under the Apache License, Version 2.0. For more information see the 
+files in the fbcomment/include/facebook directory.
 
 This module was developed by geekwright, LLC. Report any bugs
 or issues to richard@geekwright.com
