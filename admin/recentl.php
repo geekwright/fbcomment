@@ -20,7 +20,7 @@ else adminmenu(4);
 	echo '<tr><th>'._AD_FBCOM_RECENT_URL.'</th><th>'._AD_FBCOM_RECENT_COUNT.'</th><th>'._AD_FBCOM_RECENT_LASTDATE.'</th></tr>';
 	if($rows) {
 		foreach ($rows as $row) {
-			$date=formatTimeStamp($row['lastcomment']);
+			$date=formatTimeStamp($row['lastlike']);
 			echo "<tr><td><a href=\"{$row['url']}\">{$row['url']}</a></td><td>{$row['count']}</td><td>{$date}</td></tr>";
 		}
 	} else echo '<tr><td colspan="3">'._AD_FBCOM_RECENT_EMPTY.'</td></tr>';
