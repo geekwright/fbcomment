@@ -641,7 +641,6 @@ function b_fbcomment_likebox_show($options) {
 	else $value=' data-force-wall="false"';
 	$block['forcewall']=$value;
 
-	echo "<pre>"; print_r($options); print_r($block); echo "</pre>";
 	return $block;
 }
 
