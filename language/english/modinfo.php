@@ -2,7 +2,7 @@
 // @version    $Id$
 if (!defined('XOOPS_ROOT_PATH')) die('Root path not defined');
 // Module Info
-
+if (defined('XOOPS_ROOT_PATH')) {
 // The name and description of module
 define('_MI_FBCOM_NAME', 'FBComments');
 define('_MI_FBCOM_DESC', 'Facebook Comment and Like Blocks for XOOPS');
@@ -68,5 +68,5 @@ define('_MI_FBCOM_FEED_POST_DESC', "Post page to user's Facebook newsfeed");
 
 define('_MI_FBCOM_SHOW_FEED', 'Show Feed');
 define('_MI_FBCOM_SHOW_FEED_DESC', 'Show recent activity on a specific Facebook feed');
-
+}
 ?>
