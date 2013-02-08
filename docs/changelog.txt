@@ -1,7 +1,7 @@
 FBComments ChangeLog
 
-=== FBComments Module 1.1 wip ===
-Release date: 2013-02-??
+=== FBComments Module 1.1 Final ===
+Release date: 2013-02-07
 
 * Add Show Feed block - added the Facebook SDK for PHP to support
 * New config option for app secret, needed for Facebook SDK for PHP
