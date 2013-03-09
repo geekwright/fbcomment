@@ -375,7 +375,7 @@ function b_fbcomment_combo_show($options) {
 
 	if(!$block=b_fbcomment_core_show($options)) return false;
 
-	$i=6;
+	$i=4;
 	
 	// comment related
 	$intposts=intval($options[$i]);
@@ -420,7 +420,7 @@ function b_fbcomment_combo_edit($options) {
 
 	$form = b_fbcomment_core_edit($options);
 
-	$i=6;
+	$i=4;
 	// comment portion
 	// number of comments to show
 	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
@@ -434,7 +434,7 @@ function b_fbcomment_combo_edit($options) {
 	if(!$options[$i]) $form .="checked='checked'"; 
 	$form .= " />&nbsp;"._MB_FBCOM_NO."<br /><br />";
 	
-	// show faces
+	// like or recommend
 	$i += 1;
 	$form .=_MB_FBCOM_LIKE_ACTION.": <input type='radio' name='options[{$i}]' value='0' ";
 	if(!$options[$i]) $form .="checked='checked'"; 
@@ -442,7 +442,7 @@ function b_fbcomment_combo_edit($options) {
 	if($options[$i]) $form .="checked='checked'"; 
 	$form .= " />&nbsp;"._MB_FBCOM_LK_RCMD."<br /><br />";
 
-	// show faces
+	// like button layout
 	$i += 1;
 	$form .=_MB_FBCOM_LIKE_LAYOUT.": <input type='radio' name='options[{$i}]' value='0' ";
 	if(!$options[$i]) $form .="checked='checked'"; 
