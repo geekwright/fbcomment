@@ -49,6 +49,9 @@ compatabilitytest();
 		if(!is_writable($uploadpath)) {
 			echo '<tr><td><br /><br /><span style="color:orange; margin:2em;"><img src="../images/admin/warn.png" alt="!" />'._AM_FBCOM_WARN_NO_UPLOADS.'</span></td></tr>';
 		}
+		if(!function_exists('curl_version')) {
+			echo '<tr><td><br /><br /><span style="color:orange; margin:2em;"><img src="../images/admin/warn.png" alt="!" />'._AM_FBCOM_WARN_NO_CURL.'</span></td></tr>';
+		}
 		echo '</table>';
 }
 include 'footer.php'
