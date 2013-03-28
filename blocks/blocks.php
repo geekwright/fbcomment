@@ -719,7 +719,9 @@ function b_fbcomment_feed_post_edit($options) {
 }
 
 // include facebook php sdk
-require_once XOOPS_ROOT_PATH.'/modules/fbcomment/include/facebook/facebook.php';
+if(function_exists('curl_version')) {
+	include_once XOOPS_ROOT_PATH.'/modules/fbcomment/include/facebook/facebook.php';
+}
 
 function b_fbcomment_show_feed_show($options) {
 global $xoTheme;
@@ -809,6 +811,9 @@ params 	(optional) Parameters specific to the particular Graph API method you ar
 function b_fbcomment_show_feed_edit($options) {
 
 	$form='';
+	if(!function_exists('curl_version')) {
+		$form .= '<br /><br /><span style="color:red; font-weight: bold;">'._MB_FBCOM_CURL_REQUIRED.'</span><br /><br />';
+	}
 
 	// id - facebook id of feed to be shown
 	$form .= _MB_FBCOM_SHOW_FEED_ID.": <input type='text' value='".$options[0]."' id='options[0]' name='options[0]' /><br /><br />";

@@ -29,6 +29,9 @@ compatabilitytest();
 		if(!$xoopsModuleConfig['use-smarty-for-ogdata']) {
 			$moduleAdmin->addConfigBoxLine('<span style="color:orange"><img src="../images/admin/warn.png" alt="!" />'._AM_FBCOM_WARN_USE_SMARTY.'</span>', 'default');
 		}
+		if(!function_exists('curl_version')) {
+			$moduleAdmin->addConfigBoxLine('<span style="color:orange"><img src="../images/admin/warn.png" alt="!" />'._AM_FBCOM_WARN_NO_CURL.'</span>', 'default');
+		}
 		echo $moduleAdmin->renderIndex();
 	}
 	else {

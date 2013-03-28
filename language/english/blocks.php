@@ -73,4 +73,7 @@ define('_MB_FBCOM_POST_ERROR', 'Error');
 // support for show feed
 define('_MB_FBCOM_SHOW_FEED_ID', 'Feed id to show'); 
 define('_MB_FBCOM_SHOW_FEED_MAX', 'Number of posts to show'); 
+
+// new in 1.3
+define('_MB_FBCOM_CURL_REQUIRED', 'The curl PHP extension is required for this block!'); 
 ?>

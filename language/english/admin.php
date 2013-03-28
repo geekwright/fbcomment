@@ -32,4 +32,7 @@ define('_AM_FBCOM_ADMENU_TRADEMARK','* Facebook and the Facebook Logo are regist
 
 define('_AM_FBCOM_ADMENU_WELCOME','Welcome to FBComments!');
 define('_AM_FBCOM_ADMENU_MESSAGE','<img src="../images/icon_big.png" alt="Facebook Logo" style="float:left; margin-right:2em;" /> Quickly enable Facebook Social Plugins for Comments and Like Buttons, complete with rich Open Graph meta data on your site.');
+
+// new in v 1.3
+define('_AM_FBCOM_WARN_NO_CURL', 'The curl PHP exetension is required for some blocks.');
 ?>
