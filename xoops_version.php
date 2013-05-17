@@ -12,7 +12,7 @@
 if (!defined('XOOPS_ROOT_PATH')) die('Root path not defined');
 
 $modversion['name'] = _MI_FBCOM_NAME;
-$modversion['version'] = '1.3';
+$modversion['version'] = '1.4';
 $modversion['description'] = _MI_FBCOM_DESC;
 $modversion['author'] = 'Richard Griffith';
 $modversion['credits'] = 'geekwright';

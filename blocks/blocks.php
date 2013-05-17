@@ -377,23 +377,38 @@ function b_fbcomment_combo_show($options) {
 
 	$i=4;
 	
-	// comment related
+	// color scheme
+	if($options[$i]) $ourcolor=' data-colorscheme="dark"';
+	else $ourcolor='';
+	$block['colorscheme']=$ourcolor;
+
+	// width
+	$i += 1;
+	$intwidth=intval($options[$i]);
+	if($intwidth < 1) $ourwidth="";
+	else $ourwidth=' data-width="'.$intwidth.'"';
+	$block['width']=$ourwidth;
+
+	// number of posts
+	$i += 1;
 	$intposts=intval($options[$i]);
 	if($intposts < 1) $intposts="10";
 	$ourpost=" data-num-posts=\"$intposts\"";
 	$block['numposts']=$ourpost;
 	
-	// like related
+	// show faces
 	$i += 1;
 	if($options[$i]) $ourfaces=' data-show-faces="true"';
 	else $ourfaces=' data-show-faces="false"';
 	$block['faces']=$ourfaces;
 
+	// like or recommend
 	$i += 1;
 	if($options[$i]) $ouraction=' data-action="recommend"';
 	else $ouraction='';
 	$block['action']=$ouraction;
 
+	// like layout
 	$i += 1;
 	switch ($options[$i]) {
 	case 1:
@@ -408,6 +423,7 @@ function b_fbcomment_combo_show($options) {
 	}
 	$block['layout']=$ourlayout;
 	
+	// send button
 	$i += 1;
 	if($options[$i]) $oursend=' data-send="true"';
 	else $oursend=' data-send="false"';
@@ -422,7 +438,19 @@ function b_fbcomment_combo_edit($options) {
 
 	$i=4;
 	// comment portion
+	// colorscheme
+	$form .=_MB_FBCOM_COLOR.": <input type='radio' name='options[{$i}]' value='0' ";
+	if(!$options[$i]) $form .="checked='checked'"; 
+	$form .=" />&nbsp;"._MB_FBCOM_LIGHT."&nbsp;<input type='radio' name='options[{$i}]' value='1' ";
+	if($options[$i]) $form .="checked='checked'"; 
+	$form .= " />&nbsp;"._MB_FBCOM_DARK."<br /><br />";
+
+	// width
+	$i += 1;
+	$form .= _MB_FBCOM_WIDTH.": <input type='text' size='5' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
+
 	// number of comments to show
+	$i += 1;
 	$form .= _MB_FBCOM_NUM_POSTS.": <input type='text' size='6' value='".$options[$i]."' id='options[{$i}]' name='options[{$i}]' /><br /><br />";
 
 	// like
