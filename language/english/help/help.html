@@ -5,160 +5,290 @@
         </a></h1>
     <!-- -----Help Content ---------- -->
 
-<h3>Quick Start Guide to FBComments</h3>
+    <h3>Quick Start Guide to FBComments</h3>
 
-<h4 class="odd">Overview</h4>
+    <h4 class="odd">Overview</h4>
 
-<p class="even"><b>FBComments</b> provides blocks which add Facebook&reg; Like Button, Comments and Activity Feed functionality to your site.
-Page specific comments can be added quickly without requiring any changes to module templates. Open Graph meta tags are automatically added
-to pages where the blocks are used, and additional page specific data can be easily specified using the built in Open Graph Meta Data editor.
+    <p class="even"><b>FBComments</b> provides blocks which add Facebook&reg; Like Button, Comments and Activity Feed
+        functionality to your site.
+        Page specific comments can be added quickly without requiring any changes to module templates. Open Graph meta
+        tags are automatically added
+        to pages where the blocks are used, and additional page specific data can be easily specified using the built in
+        Open Graph Meta Data editor.
 
-<h4 class="odd">First Steps</h4>
+    <h4 class="odd">First Steps</h4>
 
-<p class="even">Although not strictly necessary, you may want to register <i>yourself as a developer</i> (and <i>optionally, your site as an application</i>) on <a href="http://developers.facebook.com/" target="_blank">http://developers.facebook.com/</a>.
+    <p class="even">Although not strictly necessary, you may want to register <i>yourself as a developer</i> (and <i>optionally,
+        your site as an application</i>) on <a
+            href="http://developers.facebook.com/" target="_blank">http://developers.facebook.com/</a>.
 
-<p class="even">Familiarize yourself with the Facebook concepts and Social Plugins you are going to use. These resources may be helpful:
+    <p class="even">Familiarize yourself with the Facebook concepts and Social Plugins you are going to use. These
+        resources may be helpful:
 
-<ul style="margin-left: 2em;">
-<li><a href="http://developers.facebook.com/docs/reference/plugins/like/"  target="_blank">Like Button</a>
-<li><a href="http://developers.facebook.com/docs/reference/plugins/comments/"  target="_blank">Comments</a>
-<li><a href="http://developers.facebook.com/docs/reference/plugins/activity/"  target="_blank">Activity Feed</a>
-<li><a href="http://developers.facebook.com/docs/reference/plugins/like-box/"  target="_blank">Like Box</a>
-<li><a href="http://developers.facebook.com/docs/opengraphprotocol/"  target="_blank">Open Graph Protocol</a>
-<li><a href="http://developers.facebook.com/docs/reference/dialogs/feed/"  target="_blank">Feed Dialog</a>
-</ul>
+    <ul style="margin-left: 2em;">
+        <li><a href="http://developers.facebook.com/docs/reference/plugins/like/" target="_blank">Like Button</a>
+        <li><a href="http://developers.facebook.com/docs/reference/plugins/comments/" target="_blank">Comments</a>
+        <li><a href="http://developers.facebook.com/docs/reference/plugins/activity/" target="_blank">Activity Feed</a>
+        <li><a href="http://developers.facebook.com/docs/reference/plugins/like-box/" target="_blank">Like Box</a>
+        <li><a href="http://developers.facebook.com/docs/opengraphprotocol/" target="_blank">Open Graph Protocol</a>
+        <li><a href="http://developers.facebook.com/docs/reference/dialogs/feed/" target="_blank">Feed Dialog</a>
+    </ul>
 
-<h4 class="odd">Configuration</h4>
-<p class="even">Enter <b>either</b> (not both) your numeric facebook user id (<a href="http://findmyfacebookid.com/" target="_blank">Here
-is a tool to help find that.</a>) as an admin or your assigned application id in the module preferences. If you don't, things
-will still function, but the Facebook debugger will complain, and you will not be able to moderate comments left on your pages.
-You can specify multiple admins by entering multiple numeric facebook user ids separated by commas, but be aware that this will
-only work correctly if you enable the smarty open graph meta data option as described below.
-<p class="even">To use the Show Feed block, you must enter both an applid and the secret for the appid in the module preferences.
-This is a requirement of the Facebook SDK for PHP which is used to implement this block.
+    <h4 class="odd">Configuration</h4>
+    <p class="even">Enter <b>either</b> (not both) your numeric facebook user id (<a href="http://findmyfacebookid.com/"
+                                                                                     target="_blank">Here
+        is a tool to help find that.</a>) as an admin or your assigned application id in the module preferences. If you
+        don't, things
+        will still function, but the Facebook debugger will complain, and you will not be able to moderate comments left
+        on your pages.
+        You can specify multiple admins by entering multiple numeric facebook user ids separated by commas, but be aware
+        that this will
+        only work correctly if you enable the smarty open graph meta data option as described below.
+    <p class="even">To use the Show Feed block, you must enter both an applid and the secret for the appid in the module
+        preferences.
+        This is a requirement of the Facebook SDK for PHP which is used to implement this block.
 
-<p class="even">For the best results, add the following Smarty tag to the <i>&lt;head&gt;</i> section of your theme's theme.html:
-<pre style="font-family: courier,mono, sans-serif;">
+    <p class="even">For the best results, add the following Smarty tag to the <i>&lt;head&gt;</i> section of your
+        theme's theme.html:
+    <pre style="font-family: courier,mono, sans-serif;">
       &lt;{$fbcomment_og_metas}&gt;
 </pre>
 
-<p class="even">Then choose 'Yes' for the Enable Smarty Open Graph Meta data option in FBComments module preferences. This will give
-you the best meta tags possible for communicating with Facebook. (Note: The theme change is <b>required</b> if you choose 'Yes'
-for this option.) With this option set to 'No' Facebook will still find most of the information it wants, but it will issue
-warnings when checking your pages, and some administrative tools will not be available.
+    <p class="even">Then choose 'Yes' for the Enable Smarty Open Graph Meta data option in FBComments module
+        preferences. This will give
+        you the best meta tags possible for communicating with Facebook. (Note: The theme change is <b>required</b> if
+        you choose 'Yes'
+        for this option.) With this option set to 'No' Facebook will still find most of the information it wants, but it
+        will issue
+        warnings when checking your pages, and some administrative tools will not be available.
 
-<p class="even">You might also want to specify a default <em>og:image</em> to be used if no image is supplied by the Open Graph Editor or
-through a plugin. This image should be specified as a fully qualified URL, and should be at least 200x200 pixels. Keep in mind
-that Facebook will resize this image to fit its layout, so a little extra size makes for a better presentation.
-If no image is specified, Facebook will attempt to grab an image from your page and use that. While it makes a decent attempt, the
-results can be disappointing. Supplying a default here gives you control over how your pages will be presented.
+    <p class="even">You might also want to specify a default <em>og:image</em> to be used if no image is supplied by the
+        Open Graph Editor or
+        through a plugin. This image should be specified as a fully qualified URL, and should be at least 200x200
+        pixels. Keep in mind
+        that Facebook will resize this image to fit its layout, so a little extra size makes for a better presentation.
+        If no image is specified, Facebook will attempt to grab an image from your page and use that. While it makes a
+        decent attempt, the
+        results can be disappointing. Supplying a default here gives you control over how your pages will be presented.
 
-<p class="even">Enable the blocks of your choice on your site to suit your needs.
+    <p class="even">Enable the blocks of your choice on your site to suit your needs.
 
-<p class="even">Check your site with the Facebook Debugger at <a href="http://developers.facebook.com/tools/debug"
-target="_blank">http://developers.facebook.com/tools/debug</a> to check for problems.
+    <p class="even">Check your site with the Facebook Debugger at <a href="http://developers.facebook.com/tools/debug"
+                                                                     target="_blank">http://developers.facebook.com/tools/debug</a>
+        to check for problems.
 
-<h4 class="odd">Block Options</h4>
+    <h4 class="odd">Block Options</h4>
 
-<p class="even">Most of the options are explained in the Facebook social plugin documentation mentioned above, and control how the plugin is
-displayed on your site.
+    <p class="even">Most of the options are explained in the Facebook social plugin documentation mentioned above, and
+        control how the plugin is
+        displayed on your site.
 
-<p class="even">The option requiring the most attention is the "Source of URL sent to Facebook." Each page where a
-like, comment or post to feed block is displayed needs to supply
-a URL (the <em>og:url</em> property) to Facebook to identify what is being 'Liked' or 'Commented'. You can specify a specific URL (so,
-for example, a like button will like the whole site) or use the Automatic URL and Variables options to build canonical URLs for the pages
-(so that each page gets its own comments, for example.)
+    <p class="even">The option requiring the most attention is the "Source of URL sent to Facebook." Each page where a
+        like, comment or post to feed block is displayed needs to supply
+        a URL (the <em>og:url</em> property) to Facebook to identify what is being 'Liked' or 'Commented'. You can
+        specify a specific URL (so,
+        for example, a like button will like the whole site) or use the Automatic URL and Variables options to build
+        canonical URLs for the pages
+        (so that each page gets its own comments, for example.)
 
-<p class="even">Consider a news module that can highlight the key words used in a search. A visitor might search the site, and end up viewing
-an article with a URL like "http://example.com/modules/news/article.php?storyid=256&keywords=skateboard". Now imagine the visitor
-adds a comment. If the comment referenced the whole URL, nobody would find the comment on your site without searching for "skateboard"
-and this is probably not what you want. Maybe even worse, the visitor could be oblivious to all of the comments left by other visitors,
-since they didn't all search for "skateboard" either.
+    <p class="even">Consider a news module that can highlight the key words used in a search. A visitor might search the
+        site, and end up viewing
+        an article with a URL like "http://example.com/modules/news/article.php?storyid=256&keywords=skateboard". Now
+        imagine the visitor
+        adds a comment. If the comment referenced the whole URL, nobody would find the comment on your site without
+        searching for "skateboard"
+        and this is probably not what you want. Maybe even worse, the visitor could be oblivious to all of the comments
+        left by other visitors,
+        since they didn't all search for "skateboard" either.
 
-<p class="even">To solve this problem we need to eliminate the junk from the URL we use to hang our comments on, or in a more concise wording, make
-it a canonical URL. FBComments implements this filtering with a whitelist of variables to include. By adding "storyid" into this list
-(and making sure "keywords" is not in the list) the above referenced URL would become
-"http://example.com/modules/news/article.php?storyid=256". Now, no matter what else is going on, all comments for the story will be
-grouped together, and everyone visiting the page will see them no matter how they got there. Also, if your site can be accessed by both
-http and https protocols you may also want to use the <em>Automatic Force to http://</em> option so that all comments will be under
-a single URL (so "https://example.com/" becomes "http://example.com/".)
+    <p class="even">To solve this problem we need to eliminate the junk from the URL we use to hang our comments on, or
+        in a more concise wording, make
+        it a canonical URL. FBComments implements this filtering with a whitelist of variables to include. By adding
+        "storyid" into this list
+        (and making sure "keywords" is not in the list) the above referenced URL would become
+        "http://example.com/modules/news/article.php?storyid=256". Now, no matter what else is going on, all comments
+        for the story will be
+        grouped together, and everyone visiting the page will see them no matter how they got there. Also, if your site
+        can be accessed by both
+        http and https protocols you may also want to use the <em>Automatic Force to http://</em> option so that all
+        comments will be under
+        a single URL (so "https://example.com/" becomes "http://example.com/".)
 
-<p class="even">You can also require that something from the variable whitelist be found in the URL before the comments are enabled. This feature can
-be used to allow comments on articles while keepings them off of the index page and other such places where they might not be appropriate.
+    <p class="even">You can also require that something from the variable whitelist be found in the URL before the
+        comments are enabled. This feature can
+        be used to allow comments on articles while keepings them off of the index page and other such places where they
+        might not be appropriate.
 
-<h4 class="odd">Open Graph Protocol Meta Data Editor</h4>
-<p class="even">If you have admin rights to the FBComments module, FBComments blocks will display an clickable icon to bring up the
-meta data editor for the <em>og:url</em> that is presented by the page. In this editor you can upload an image to be associated with
-your page, and supply a title and description, giving you a chance to supply a customized view of your individual page when it is
-shared on Facebook.
-<p class="even">On initial entry, the editor will show the current data which will be supplied to Facebook. This data can come from
-FBComments module configuration (default image,) a module plugin, or be set by a previous invocation of the meta data editor.
-If supported by your browser, changes are registered as made, and you can drag and drop an image file onto the editor to change it.
-Clicking on the checkmark icon beside the URL (near the bottom of the editor display) will invoke the Facebook debugger for the
-current <em>og:url</em> context, so you can check for any issues.
+    <h4 class="odd">Open Graph Protocol Meta Data Editor</h4>
+    <p class="even">If you have admin rights to the FBComments module, FBComments blocks will display an clickable icon
+        to bring up the
+        meta data editor for the <em>og:url</em> that is presented by the page. In this editor you can upload an image
+        to be associated with
+        your page, and supply a title and description, giving you a chance to supply a customized view of your
+        individual page when it is
+        shared on Facebook.
+    <p class="even">On initial entry, the editor will show the current data which will be supplied to Facebook. This
+        data can come from
+        FBComments module configuration (default image,) a module plugin, or be set by a previous invocation of the meta
+        data editor.
+        If supported by your browser, changes are registered as made, and you can drag and drop an image file onto the
+        editor to change it.
+        Clicking on the checkmark icon beside the URL (near the bottom of the editor display) will invoke the Facebook
+        debugger for the
+        current <em>og:url</em> context, so you can check for any issues.
 
-<h4 class="odd">Blocks Summary Matrix</h4>
-<p class="even"><table>
-<tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th colspan="3">Requires</th></tr>
-<tr><th>Block</th><th>Type</th><th>Sets OG Data</th><th>Appid</th><th>Secret</th><th>PHP curl Extension</th></tr>
-<tr><td>Comment</td><td>Social Plugin</td><td>Yes</td><td>optional</td><td>no</td><td>no</td></tr>
-<tr><td>Like</td><td>Social Plugin</td><td>Yes</td><td>optional</td><td>no</td><td>no</td></tr>
-<tr><td>Combination</td><td>Social Plugin (x2)</td><td>Yes</td><td>optional</td><td>no</td><td>no</td></tr>
-<tr><td>Activity Feed</td><td>Social Plugin</td><td>No</td><td>no</td><td>no</td><td>no</td></tr>
-<tr><td>Like Box</td><td>Social Plugin</td><td>No</td><td>no</td><td>no</td><td>no</td></tr>
-<tr><td>Post To Feed</td><td>Dialog</td><td>Yes</td><td>optional</td><td>no</td><td>no</td></tr>
-<tr><td>Show Feed</td><td>Uses PHP SDK</td><td>No</td><td>required</td><td>required</td><td>required</td></tr>
-</table>
+    <h4 class="odd">Blocks Summary Matrix</h4>
+    <p class="even">
+    <table>
+        <tr>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th colspan="3">Requires</th>
+        </tr>
+        <tr>
+            <th>Block</th>
+            <th>Type</th>
+            <th>Sets OG Data</th>
+            <th>Appid</th>
+            <th>Secret</th>
+            <th>PHP curl Extension</th>
+        </tr>
+        <tr>
+            <td>Comment</td>
+            <td>Social Plugin</td>
+            <td>Yes</td>
+            <td>optional</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Like</td>
+            <td>Social Plugin</td>
+            <td>Yes</td>
+            <td>optional</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Combination</td>
+            <td>Social Plugin (x2)</td>
+            <td>Yes</td>
+            <td>optional</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Activity Feed</td>
+            <td>Social Plugin</td>
+            <td>No</td>
+            <td>no</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Like Box</td>
+            <td>Social Plugin</td>
+            <td>No</td>
+            <td>no</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Post To Feed</td>
+            <td>Dialog</td>
+            <td>Yes</td>
+            <td>optional</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>Show Feed</td>
+            <td>Uses PHP SDK</td>
+            <td>No</td>
+            <td>required</td>
+            <td>required</td>
+            <td>required</td>
+        </tr>
+    </table>
 
-<h4 class="odd">Important Note</h4>
-<p class="even">If you use more than one block on a page, keep in mind that there can only be ONE set of Open Graph data associated
-with a given page. If the blocks specify different URLs, only one of them will be used.
-(The blocks which have "no" in the Sets OG Data column above are exceptions to this rule, as they do not establish any open graph data for the page.)
+    <h4 class="odd">Important Note</h4>
+    <p class="even">If you use more than one block on a page, keep in mind that there can only be ONE set of Open Graph
+        data associated
+        with a given page. If the blocks specify different URLs, only one of them will be used.
+        (The blocks which have "no" in the Sets OG Data column above are exceptions to this rule, as they do not
+        establish any open graph data for the page.)
 
-<h4 class="odd">Module Permissions</h4>
-<p class="even">This module does not have a real main page at this time. It consists only of blocks and the necessary scripts to support
-those blocks. Attempts to use the fbcomment/index.php will result in a fully functional empty page. It is recommended to turn it off
-in the main menu in the CMS module administration area.
+    <h4 class="odd">Module Permissions</h4>
+    <p class="even">This module does not have a real main page at this time. It consists only of blocks and the
+        necessary scripts to support
+        those blocks. Attempts to use the fbcomment/index.php will result in a fully functional empty page. It is
+        recommended to turn it off
+        in the main menu in the CMS module administration area.
 
-<p class="even">Group access permissions to the FBComments module are required to use the blocks, above and beyond the block display permission.
-Interacting with the blocks records the URL, action and datetime, and also triggers XOOPS style notification via AJAX style calls to scripts in
-the fbcomment directory which use the standard mainfile inclusion which adds a layer of additional protections (such as protector) but requires access permissions to work as intended.
+    <p class="even">Group access permissions to the FBComments module are required to use the blocks, above and beyond
+        the block display permission.
+        Interacting with the blocks records the URL, action and datetime, and also triggers XOOPS style notification via
+        AJAX style calls to scripts in
+        the fbcomment directory which use the standard mainfile inclusion which adds a layer of additional protections
+        (such as protector) but requires access permissions to work as intended.
 
-<p class="even">Also note, in normal operation, Facebook will pull data from your site as the <b>anonymous</b> user.
-If blocks are not visible, the meta data Facebook expects will not be exposed, and the results will be less than optimal.
+    <p class="even">Also note, in normal operation, Facebook will pull data from your site as the <b>anonymous</b> user.
+        If blocks are not visible, the meta data Facebook expects will not be exposed, and the results will be less than
+        optimal.
 
-<p class="even">Module administration permissions enable in-block editing of Open Graph meta data.
+    <p class="even">Module administration permissions enable in-block editing of Open Graph meta data.
 
-<h4 class="odd">Caching</h4>
-<p class="even">In general, fbcomments blocks should not be cached. These blocks set page meta data outside the confines of the blocks
-themselves and they can change their content based on the page context in which they are displayed. Further, the majority of the
-block content comes not from block, but from the Facebook content loaded through javascript.
-<p class="even">The <strong>exception</strong> to this rule is the "Show Feed" block. This block is generated entirely within the CMS
-itself by making calls to the Facebook API. This can be a resource intensive operation, and caching will provide significant performance
-enhancement. Choose the highest cache time that is reasonable for your feed's typical activity level.
+    <h4 class="odd">Caching</h4>
+    <p class="even">In general, fbcomments blocks should not be cached. These blocks set page meta data outside the
+        confines of the blocks
+        themselves and they can change their content based on the page context in which they are displayed. Further, the
+        majority of the
+        block content comes not from block, but from the Facebook content loaded through javascript.
+    <p class="even">The <strong>exception</strong> to this rule is the "Show Feed" block. This block is generated
+        entirely within the CMS
+        itself by making calls to the Facebook API. This can be a resource intensive operation, and caching will provide
+        significant performance
+        enhancement. Choose the highest cache time that is reasonable for your feed's typical activity level.
 
-<h4 class="odd">Plugins</h4>
-<p class="even">It is possible to extend the default Open Graph data for a module through the use of plugins. Plugins can supply
-page appropriate images, titles, better descriptions, canonical URLs, and more. The plugin mechanism is documented in the docs
-folder of the FBComments module distribution.
+    <h4 class="odd">Plugins</h4>
+    <p class="even">It is possible to extend the default Open Graph data for a module through the use of plugins.
+        Plugins can supply
+        page appropriate images, titles, better descriptions, canonical URLs, and more. The plugin mechanism is
+        documented in the docs
+        folder of the FBComments module distribution.
 
-<h4 class="odd">Notifications and Logging</h4>
-<p class="even">As mentioned under permissions, each like and comment action is captured. Module administrators may subscribe
-standard XOOPS style notifications of new actions. A summary of the most recent activity is available in the module administration
-area. Likes and comments are recorded in separate tables. The captured data is in aggregate, and no identifying user data is
-recorded by this module (but what Facebook does with the data is anyone's guess.) The data consists of the URL, the first time the
-action occurred for URL, the most recent time the action for the URL occurred, and the total number of times the action has occurred.
-This data is captured, but beyond the simple recent displays, it is not otherwise processed in the module at this time. (But it would
-be a great use for gwreports to study it the way you want to see it.)
+    <h4 class="odd">Notifications and Logging</h4>
+    <p class="even">As mentioned under permissions, each like and comment action is captured. Module administrators may
+        subscribe
+        standard XOOPS style notifications of new actions. A summary of the most recent activity is available in the
+        module administration
+        area. Likes and comments are recorded in separate tables. The captured data is in aggregate, and no identifying
+        user data is
+        recorded by this module (but what Facebook does with the data is anyone's guess.) The data consists of the URL,
+        the first time the
+        action occurred for URL, the most recent time the action for the URL occurred, and the total number of times the
+        action has occurred.
+        This data is captured, but beyond the simple recent displays, it is not otherwise processed in the module at
+        this time. (But it would
+        be a great use for gwreports to study it the way you want to see it.)
 
-<h4 class="odd">In Use: Third Party Cookies</h4>
-<p class="even">Facebook social plugins are notoriously sensitive to the user's browser third party cookie settings. If third party
-cookies are not enabled, the comment and like imagery may appear correctly, but they may fail in various ways when used.
-FBComments blocks loads javascript from connect.facebook.net which inserts an iframe in the page sourced from facebook.com with
-multiple chunks of stuff cached through Akamai, that ultimately ends up with the users facebook login status showing.
-While it might seem at first that it would be nice, if this really worked without third party cookie permissions, it should be
-considered a browser security bug.
+    <h4 class="odd">In Use: Third Party Cookies</h4>
+    <p class="even">Facebook social plugins are notoriously sensitive to the user's browser third party cookie settings.
+        If third party
+        cookies are not enabled, the comment and like imagery may appear correctly, but they may fail in various ways
+        when used.
+        FBComments blocks loads javascript from connect.facebook.net which inserts an iframe in the page sourced from
+        facebook.com with
+        multiple chunks of stuff cached through Akamai, that ultimately ends up with the users facebook login status
+        showing.
+        While it might seem at first that it would be nice, if this really worked without third party cookie
+        permissions, it should be
+        considered a browser security bug.
 
-<br /><br /><br /><br /><div style="text-align:right"><small>* Facebook and the Facebook Logo are registered trademarks of Facebook, Inc.</small></div>
+        <br><br><br><br>
+    <div style="text-align:right;">
+        <small>* Facebook and the Facebook Logo are registered trademarks of Facebook, Inc.</small>
+    </div>
 
 </div>

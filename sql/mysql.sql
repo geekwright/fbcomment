@@ -1,38 +1,46 @@
 #
-# Tables for fbcomment module  @version    $Id$
 #
 
 CREATE TABLE fbc_og_meta (
-  id int(10) NOT NULL auto_increment,
-  url varchar(767) CHARACTER SET ascii  NOT NULL,
-  image varchar(1024),
-  title varchar(255),
-  description varchar(1024),
-  lastupdate  int(10) NOT NULL default '0',
+  id          INT(10)             NOT NULL AUTO_INCREMENT,
+  url         VARCHAR(767)
+              CHARACTER SET ascii NOT NULL,
+  image       VARCHAR(1024),
+  title       VARCHAR(255),
+  description VARCHAR(1024),
+  lastupdate  INT(10)             NOT NULL DEFAULT '0',
 
   PRIMARY KEY (id),
   UNIQUE INDEX (url)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 CREATE TABLE fbc_like_tracker (
-  id int(10) NOT NULL auto_increment,
-  url varchar(767) CHARACTER SET ascii  NOT NULL,
-  count int(10) NOT NULL default '1',
-  lastlike  int(10) NOT NULL default '0',
-  firstlike  int(10) NOT NULL default '0',
+  id        INT(10)             NOT NULL AUTO_INCREMENT,
+  url       VARCHAR(767)
+            CHARACTER SET ascii NOT NULL,
+  count     INT(10)             NOT NULL DEFAULT '1',
+  lastlike  INT(10)             NOT NULL DEFAULT '0',
+  firstlike INT(10)             NOT NULL DEFAULT '0',
 
   PRIMARY KEY (id),
   UNIQUE INDEX (url)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 CREATE TABLE fbc_comment_tracker (
-  id int(10) NOT NULL auto_increment,
-  url varchar(767) CHARACTER SET ascii  NOT NULL,
-  count int(10) NOT NULL default '1',
-  lastcomment  int(10) NOT NULL default '0',
-  firstcomment  int(10) NOT NULL default '0',
+  id           INT(10)             NOT NULL AUTO_INCREMENT,
+  url          VARCHAR(767)
+               CHARACTER SET ascii NOT NULL,
+  count        INT(10)             NOT NULL DEFAULT '1',
+  lastcomment  INT(10)             NOT NULL DEFAULT '0',
+  firstcomment INT(10)             NOT NULL DEFAULT '0',
 
   PRIMARY KEY (id),
   UNIQUE INDEX (url)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
