@@ -99,7 +99,7 @@ function b_fbcomment_core_show($options)
             foreach ($names_to_check as $i) {
                 if ($i) {
                     if (isset($_REQUEST[$i])) {
-                        if ($query != '') {
+                        if ($query !== '') {
                             $query .= '&';
                         }
                         $query          .= $i . '=' . $_REQUEST[$i];
@@ -107,16 +107,16 @@ function b_fbcomment_core_show($options)
                     }
                 }
             }
-            if ($options[2] && $query == '') {
+            if ($options[2] && $query === '') {
                 return false;
             }
-            if ($query != '') {
+            if ($query !== '') {
                 $query = '?' . $query;
             }
             $ourscript = $_SERVER['SCRIPT_NAME'];
             // eliminate index.php if no query string
             $ourscript_parts = pathinfo($ourscript);
-            if ($ourscript_parts['basename'] === 'index.php' && $query == '') {
+            if ($ourscript_parts['basename'] === 'index.php' && $query === '') {
                 if (substr($ourscript_parts['dirname'], -1) !== '/') {
                     $ourscript = $ourscript_parts['dirname'] . '/';
                 } else {
