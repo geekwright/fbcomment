@@ -18,8 +18,8 @@ if ($xoop25plus) {
 
     echo '<table width="100%" border="0" cellspacing="1" class="outer">';
     echo '<tr><th>' . _AM_FBCOM_ADMENU_ABOUT . '</th></tr><tr><td width="100%" >';
-    echo '<center><br><b>' . _AM_FBCOM_ADMENU_DESC . '</b></center><br>';
-    echo '<center>Brought to you by <a href="http://www.geekwright.com/" target="_blank">geekwright, LLC</a></center><br>';
+    echo '<div class="center;"><br><b>' . _AM_FBCOM_ADMENU_DESC . '</b></div><br>';
+    echo '<div class="center;">Brought to you by <a href="http://www.geekwright.com/" target="_blank">geekwright, LLC</a></div><br>';
     echo '</td></tr>';
     echo '</table>';
 }

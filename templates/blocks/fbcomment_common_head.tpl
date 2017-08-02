@@ -61,15 +61,15 @@
             <div style="margin: 2em;">
                 <form id="fbc_dd_upload" action="<{$block.formaction}>" method="POST" enctype="multipart/form-data">
                     <{securityToken}><{*//mb*}>
-                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="3000000"/>
-                    <input type="hidden" id="X_OGURL" name="X_OGURL" value="<{$block.ogurlenc}>"/>
+                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="3000000">
+                    <input type="hidden" id="X_OGURL" name="X_OGURL" value="<{$block.ogurlenc}>">
                     <div>
                         <h2><{$smarty.const._MB_FBCOM_OGEDIT_OGIMG}></h2>
                         <div id="fbc_dd_nofiledrag"><{if !empty($block.ogimage)}><img class="fbc_dd_image"
                                                                                       src="<{$block.ogimage}>"><{/if}>
                         </div>
                         <{$smarty.const._MB_FBCOM_OGEDIT_FILE}><input type="file" id="fbc_dd_fileselect"
-                                                                      name="fileselect[]"/>
+                                                                      name="fileselect[]">
                         <div id="fbc_dd_progress"></div>
                         <div id="fbc_dd_filedrag">
                             <{if !empty($block.ogimage)}><img class="fbc_dd_image" src="<{$block.ogimage}>"><{/if}>
@@ -77,7 +77,7 @@
                         </div>
                         <h2><{$smarty.const._MB_FBCOM_OGEDIT_OGTITLE}></h2>
                         <input type="text" id="fbc_dd_ogtitle" name="fbc_dd_ogtitle" size="40"
-                               value="<{$block.ogtitle}>"/> <a href="javascript:getTitle('fbc_dd_ogtitle')"
+                               value="<{$block.ogtitle}>"> <a href="javascript:getTitle('fbc_dd_ogtitle')"
                                                                class="fbc_dd_grabbutton"><{$smarty.const._MB_FBCOM_OGEDIT_GRAB}></a>
                         <h2><{$smarty.const._MB_FBCOM_OGEDIT_OGDESC}></h2>
                         <textarea id="fbc_dd_ogdesc" name="fbc_dd_ogdesc" rows="4"

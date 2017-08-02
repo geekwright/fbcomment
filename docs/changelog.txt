@@ -26,8 +26,8 @@ Release date: 2013-02-07
 * Add Show Feed block - added the Facebook SDK for PHP to support
 * New config option for app secret, needed for Facebook SDK for PHP
 * Add Post To Feed Dialog block
-* Add Activity Feed plugin block 
-* Add Like Box plugin block 
+* Add Activity Feed plugin block
+* Add Like Box plugin block
 * For new blocks added new language constants, bottom of blocks.php and modinfo.php
 * Fix Like Button error in some installations
 * Fix special charachter issues in OG editor
@@ -41,7 +41,7 @@ Release date: 2013-01-11
 === FBComments Module 1.0 RC2 ===
 Release date: 2013-01-08
 
-* NEW language constant _MB_FBCOM_SDK_CHANNEL_LOCALE in blocks.php 
+* NEW language constant _MB_FBCOM_SDK_CHANNEL_LOCALE in blocks.php
 * add missing support for Facebook locales
 * fix a few typos and various errors in documentation files
 * change defaults on comment block to match other blocks
