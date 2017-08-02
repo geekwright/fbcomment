@@ -10,14 +10,15 @@
  */
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-$modversion['version']       = '1.4';
+$modversion['version']       = '1.5';
 $modversion['module_status'] = 'Beta 1';
-$modversion['release_date']  = '2014/04/23';
+$modversion['release_date']  = '2017/08/01';
 $modversion['name']          = _MI_FBCOM_NAME;
 $modversion['description']   = _MI_FBCOM_DESC;
 $modversion['author']        = 'Richard Griffith';
 $modversion['credits']       = 'geekwright';
-$modversion['license']       = 'GPL V2';
+$modversion['license']       = 'GNU GPL 2.0 or later';
+$modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html';
 $modversion['official']      = 0; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
 $modversion['image']         = 'assets/images/logoModule.png';
 $modversion['dirname']       = basename(__DIR__);

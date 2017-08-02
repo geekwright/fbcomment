@@ -15,9 +15,9 @@ if (!$xoop25plus) {
     adminmenu(0);
 }
 
-$help = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/help/help.html';
+$help = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/help/help.tpl';
 if (!file_exists($help)) {
-    $help = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/language/english/help/help.html';
+    $help = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/language/english/help/help.tpl';
 }
 
 echo '<table width="100%" border="0" cellspacing="1" class="outer">';

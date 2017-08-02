@@ -24,7 +24,7 @@
         return false;
     }
 </script>
-<div class="fbc_posttofeed"><img src="<{xoAppUrl /modules/fbcomment/assets/images/icon_small.png}>"> <a
+<div class="fbc_posttofeed"><img src="<{xoAppUrl /modules/fbcomment/assets/images/logo_small.png}>"> <a
             href="javascript:void(0);" onclick="return postToFeed();"
             title="<{$smarty.const._MB_FBCOM_POST_TO_FEED}>"><{$smarty.const._MB_FBCOM_POST_TO_FEED}></a>
     <span id="fbc_posttofeed_msg"> </span></div>
