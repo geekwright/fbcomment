@@ -14,7 +14,7 @@ $xoopsLogger->activated = false;
 if (!empty($_SERVER['HTTP_X_OGURL'])) {
     $url = urldecode($_SERVER['HTTP_X_OGURL']);
 
-    $q_url = mysqli_real_escape_string($url);
+    $q_url = $GLOBALS['xoopsDB']->escape($url);
 
     $sql = 'UPDATE ' . $xoopsDB->prefix('fbc_like_tracker') . ' set count = count + 1, lastlike = UNIX_TIMESTAMP() ' . " where url='{$q_url}' ";
 

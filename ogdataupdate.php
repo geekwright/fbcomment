@@ -75,7 +75,7 @@ if ($ogimage) {
     rename($tempfn, $filename);
     chmod($filename, 0644);
 
-    $q_url = mysqli_real_escape_string($url);
+    $q_url = $GLOBALS['xoopsDB']->escape($url);
     $sql   = 'SELECT image FROM ' . $xoopsDB->prefix('fbc_og_meta') . " where url='{$q_url}' ";
 
     $result = $xoopsDB->query($sql);
@@ -88,7 +88,7 @@ if ($ogimage) {
         }
     }
 
-    $fn = mysqli_real_escape_string($justfn);
+    $fn = $GLOBALS['xoopsDB']->escape($justfn);
     update_fbc_og_meta($url, 'image', $fn);
 
     exit();
@@ -108,9 +108,9 @@ function update_fbc_og_meta($url, $col, $val)
 {
     global $xoopsDB;
 
-    $q_url = mysqli_real_escape_string($url);
-    $q_col = mysqli_real_escape_string($col);
-    $q_val = mysqli_real_escape_string($val);
+    $q_url = $GLOBALS['xoopsDB']->escape($url);
+    $q_col = $GLOBALS['xoopsDB']->escape($col);
+    $q_val = $GLOBALS['xoopsDB']->escape($val);
 
     $sql = 'UPDATE ' . $xoopsDB->prefix('fbc_og_meta') . " set {$q_col} = '{$q_val}', lastupdate = UNIX_TIMESTAMP() " . " where url='{$q_url}' ";
 
@@ -134,20 +134,20 @@ if (empty($_POST['X_OGURL'])) {
     redirect_header('', 5, 'Required URL missing');
 }
 $ogurl = urldecode($_POST['X_OGURL']);
-$url   = mysqli_real_escape_string($ogurl);
+$url   = $GLOBALS['xoopsDB']->escape($ogurl);
 
 $ogtitle = '';
 if (!empty($_POST['fbc_dd_ogtitle'])) {
     $ogtitle = urldecode($_POST['fbc_dd_ogtitle']);
 }
-$ogtitle = mysqli_real_escape_string($ogtitle);
+$ogtitle = $GLOBALS['xoopsDB']->escape($ogtitle);
 update_fbc_og_meta($url, 'title', $ogtitle);
 
 $ogdescription = '';
 if (!empty($_POST['fbc_dd_ogdesc'])) {
     $ogdescription = urldecode($_POST['fbc_dd_ogdesc']);
 }
-$ogdescription = mysqli_real_escape_string($ogdescription);
+$ogdescription = $GLOBALS['xoopsDB']->escape($ogdescription);
 update_fbc_og_meta($url, 'description', $ogdescription);
 
 if (!empty($_FILES['fileselect'])) {
@@ -177,7 +177,7 @@ if (!empty($_FILES['fileselect'])) {
                 move_uploaded_file($tempfn, $filename);
                 chmod($filename, 0644);
 
-                $q_url = mysqli_real_escape_string($url);
+                $q_url = $GLOBALS['xoopsDB']->escape($url);
                 $sql   = 'SELECT image FROM ' . $xoopsDB->prefix('fbc_og_meta') . " where url='{$q_url}' ";
 
                 $result = $xoopsDB->query($sql);
@@ -190,7 +190,7 @@ if (!empty($_FILES['fileselect'])) {
                     }
                 }
 
-                $fn = mysqli_real_escape_string($justfn);
+                $fn = $GLOBALS['xoopsDB']->escape($justfn);
                 update_fbc_og_meta($url, 'image', $fn);
             } else {
                 $error = true;

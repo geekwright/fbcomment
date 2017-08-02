@@ -15,7 +15,7 @@ include __DIR__ . '/../../mainfile.php';
 if (!empty($_SERVER['HTTP_X_OGURL'])) {
     $url = urldecode($_SERVER['HTTP_X_OGURL']);
 
-    $q_url = mysqli_real_escape_string($url);
+    $q_url = $GLOBALS['xoopsDB']->escape($url);
 
     $sql = 'UPDATE ' . $xoopsDB->prefix('fbc_comment_tracker') . ' set count = count + 1, lastcomment = UNIX_TIMESTAMP() ' . " where url='{$q_url}' ";
 

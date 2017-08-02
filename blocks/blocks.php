@@ -188,7 +188,7 @@ function b_fbcomment_core_show($options)
     $oururl = $metas['og:url']; // allow plugin to enhance cannonical url
 
     // get user specifed page data
-    $q_url = mysqli_real_escape_string($oururl);
+    $q_url = $GLOBALS['xoopsDB']->escape($oururl);
 
     $sql = 'SELECT image, title, description FROM ' . $xoopsDB->prefix('fbc_og_meta') . " where url='{$q_url}' ";
 
