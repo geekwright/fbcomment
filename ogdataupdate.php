@@ -11,6 +11,8 @@
 include __DIR__ . '/../../mainfile.php';
 
 global $xoopsDB, $xoopsUser, $xoopsModuleConfig, $xoopsOption;
+$moduleDirName = basename(__DIR__);
+$moduleHelper  = Xmf\Module\Helper::getHelper($moduleDirName);
 
 // check for ajax upload
 $ogimage       = (isset($_SERVER['HTTP_X_FILENAME']) ? $_SERVER['HTTP_X_FILENAME'] : false);
@@ -31,7 +33,7 @@ if ($ogdescription) {
 }
 
 // check for authority - use module admin permission
-if (!(is_object($xoopsUser) && $xoopsUser->isAdmin())) {
+if (!($moduleHelper->isUserAdmin())) {
     if ($ogimage) {
         header('Status: 500 Unspecified Failure');
         exit();

@@ -227,7 +227,8 @@ function b_fbcomment_core_show($options)
     }
 
     // add our editor for open graph meta data
-    if (is_object($xoopsUser) && $xoopsUser->isAdmin($module->getVar('mid'))) {
+//    if (is_object($xoopsUser) && $xoopsUser->isAdmin($module->getVar('mid'))) {
+    if ($moduleHelper->isUserAdmin()){
         b_fbcomment_addfiledropform($metas, $block);
     }
 
