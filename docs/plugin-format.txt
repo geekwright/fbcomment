@@ -1,11 +1,11 @@
 FBComments Plugin Formats
 
-FBComments has a simple plugin format to allow module specific generation 
-of Open Graph Protocol meta data. This data will be viewable in a page's 
-OG Editor if no other values have been entered, but data entered directly 
+FBComments has a simple plugin format to allow module specific generation
+of Open Graph Protocol meta data. This data will be viewable in a page's
+OG Editor if no other values have been entered, but data entered directly
 in the editor will take precedence over the plugin supplied data.
 
-An FBComments block will look for a plugin file in the include directory of 
+An FBComments block will look for a plugin file in the include directory of
 the current module. The file must be named fbcomment_plugin.php
 
 fbcomment_plugin.php must contain a function definition called fbcom_plugin,
@@ -13,9 +13,9 @@ taking two parameters, as shown:
 
 function fbcom_plugin(&$metas, $plugin_env)
 
-$metas contains an array of already determined meta data, keyed by property. 
+$metas contains an array of already determined meta data, keyed by property.
 $plugin_env is an array containing any request variables (as specified in
-the block options) found during the processing of the block that invoked the 
+the block options) found during the processing of the block that invoked the
 plugin.
 
 Here is an example plugin that demonstrates some of the possibilities:
@@ -25,86 +25,86 @@ Here is an example plugin that demonstrates some of the possibilities:
 * example plugin using a tadgallery 1.3 installation
 *
 *
-*	$metas may include:
-*	['fb:admins'] - Admins if specified in module config
-*	['fb:app_id'] - Application Id if specified in module config
-*	['og:type'] - Derived type, website (front page) or article (everywhere else)
-*	['og:url'] - Normalized URL
-*	['og:title'] - Title
-*	['og:description'] - Description
-*	['og:image'] - Image
-*	['og:site_name'] - Site name
+*   $metas may include:
+*   ['fb:admins'] - Admins if specified in module config
+*   ['fb:app_id'] - Application Id if specified in module config
+*   ['og:type'] - Derived type, website (front page) or article (everywhere else)
+*   ['og:url'] - Normalized URL
+*   ['og:title'] - Title
+*   ['og:description'] - Description
+*   ['og:image'] - Image
+*   ['og:site_name'] - Site name
 *
-*	The plugin can read and modify these values as appropriate.
+*   The plugin can read and modify these values as appropriate.
 *
-*	$plugin_env contains the relevant variable found by the block code. For our example
-*	our URL could have been http://example.com/modules/tadgallery/view.php?sn=52
-*	Assuming 'sn' was added to the list of variables in the block configuration we
-*	will be passed an array looking like this $plugin_env=array('sn'=>'52')
+*   $plugin_env contains the relevant variable found by the block code. For our example
+*   our URL could have been http://example.com/modules/tadgallery/view.php?sn=52
+*   Assuming 'sn' was added to the list of variables in the block configuration we
+*   will be passed an array looking like this $plugin_env=array('sn'=>'52')
 *
 *       Return false to abort the block, true to continue
 */
- 
+
 function fbcom_plugin(&$metas, $plugin_env) {
 global $xoopsDB;
 
-	$ourscript= explode ('?', urldecode($metas['og:url']) );
-	$ourscript_parts = pathinfo($ourscript[0]);
+    $ourscript= explode ('?', urldecode($metas['og:url']) );
+    $ourscript_parts = pathinfo($ourscript[0]);
 
-	// viewing a category listing
-	$csn=0;
-	if($ourscript_parts['basename']=='index.php') {
-		if(isset($plugin_env['csn'])) $csn=intval($plugin_env['csn']);
-		if ($ourscript_parts['basename']=='index.php' && !$csn) {
-			// omit index.php?csn=0 for cleaner url
-			$metas['og:url']=$ourscript_parts['dirname'].'/';
-			if(substr($ourscript_parts['dirname'],-1)!='/') $metas['og:url']=$ourscript_parts['dirname'].'/';
-			else $metas['og:url']=$ourscript_parts['dirname'];
-		}
-		else {
-			if($csn) $metas['og:url']=$ourscript[0].'?csn='.$csn;
-		}
-		if(!$csn) $csn='0'; 
-		$sql = "SELECT csn, title, cover FROM ".$xoopsDB->prefix('tad_gallery_cate') . " where csn = {$csn} ";
-		$result = $xoopsDB->query($sql);
-		if ($result) { 
-			if($myrow=$xoopsDB->fetchArray($result)) {
-				if(!empty($myrow['cover'])) {
-					// cover image in the form: small/2004_01_01/80_s_2009_1117Image0003.JPG
-					$metas['og:image']=XOOPS_URL . '/uploads/tadgallery/' . $myrow['cover'];
-				}
-				if(!empty($myrow['title'])) $metas['og:title']=$myrow['title'];
-			}
-		}
-	}
+    // viewing a category listing
+    $csn=0;
+    if($ourscript_parts['basename']=='index.php') {
+        if(isset($plugin_env['csn'])) $csn=intval($plugin_env['csn']);
+        if ($ourscript_parts['basename']=='index.php' && !$csn) {
+            // omit index.php?csn=0 for cleaner url
+            $metas['og:url']=$ourscript_parts['dirname'].'/';
+            if(substr($ourscript_parts['dirname'],-1)!='/') $metas['og:url']=$ourscript_parts['dirname'].'/';
+            else $metas['og:url']=$ourscript_parts['dirname'];
+        }
+        else {
+            if($csn) $metas['og:url']=$ourscript[0].'?csn='.$csn;
+        }
+        if(!$csn) $csn='0';
+        $sql = "SELECT csn, title, cover FROM ".$xoopsDB->prefix('tad_gallery_cate') . " where csn = {$csn} ";
+        $result = $xoopsDB->query($sql);
+        if ($result) {
+            if($myrow=$xoopsDB->fetchArray($result)) {
+                if(!empty($myrow['cover'])) {
+                    // cover image in the form: small/2004_01_01/80_s_2009_1117Image0003.JPG
+                    $metas['og:image']=XOOPS_URL . '/uploads/tadgallery/' . $myrow['cover'];
+                }
+                if(!empty($myrow['title'])) $metas['og:title']=$myrow['title'];
+            }
+        }
+    }
 
-	// viewing a specific image
-	if(isset($plugin_env['sn'])) {
-		$sn=intval($plugin_env['sn']);
-		$sql = "SELECT sn, title, description, filename, dir FROM ".$xoopsDB->prefix('tad_gallery') .
-		  " where sn = {$sn} ";
+    // viewing a specific image
+    if(isset($plugin_env['sn'])) {
+        $sn=intval($plugin_env['sn']);
+        $sql = "SELECT sn, title, description, filename, dir FROM ".$xoopsDB->prefix('tad_gallery') .
+          " where sn = {$sn} ";
 
-		$result = $xoopsDB->query($sql);
-		if ($result) { 
-			if($myrow=$xoopsDB->fetchArray($result)) {
-				// build url for the medium size file  /uploads/tadgallery/medium/2011_08_19/52_m_DSCF2624.JPG
-				// fallback to full size /uploads/tadgallery/2011_08_19/52_DSCF2624.JPG
-				$picpath='/uploads/tadgallery/medium/' . $myrow['dir']. '/' . $myrow['sn'] .'_m_'. $myrow['filename'];
-				if(!file_exists(XOOPS_ROOT_PATH.$picpath))
-					$picpath='/uploads/tadgallery/' . $myrow['dir']. '/' . $myrow['sn'] .'_'. $myrow['filename'];
-				$metas['og:image']=XOOPS_URL . $picpath;
-				
-				if(!empty($myrow['title'])) $metas['og:title']=$myrow['title'];
-				if(!empty($myrow['description'])) {
-					$description=$myrow['description'];
-					// add any filtering needed
-					$metas['og:description']=$description;
-				}
-			} else return false;  // turn off comments for non-existant content
-		}
-	}
-	
-	return true;
+        $result = $xoopsDB->query($sql);
+        if ($result) {
+            if($myrow=$xoopsDB->fetchArray($result)) {
+                // build url for the medium size file  /uploads/tadgallery/medium/2011_08_19/52_m_DSCF2624.JPG
+                // fallback to full size /uploads/tadgallery/2011_08_19/52_DSCF2624.JPG
+                $picpath='/uploads/tadgallery/medium/' . $myrow['dir']. '/' . $myrow['sn'] .'_m_'. $myrow['filename'];
+                if(!file_exists(XOOPS_ROOT_PATH.$picpath))
+                    $picpath='/uploads/tadgallery/' . $myrow['dir']. '/' . $myrow['sn'] .'_'. $myrow['filename'];
+                $metas['og:image']=XOOPS_URL . $picpath;
+
+                if(!empty($myrow['title'])) $metas['og:title']=$myrow['title'];
+                if(!empty($myrow['description'])) {
+                    $description=$myrow['description'];
+                    // add any filtering needed
+                    $metas['og:description']=$description;
+                }
+            } else return false;  // turn off comments for non-existant content
+        }
+    }
+
+    return true;
 }
 
 ?>

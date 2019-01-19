@@ -1,0 +1,88 @@
+/* used for the show feed block only */
+.fbc_showfeed_page {
+    background-color: #ddf;
+    border: 1px solid #888;
+    min-height: 58px;
+    margin-bottom: 6px;
+}
+
+.fbc_showfeed_page img {
+    padding: 4px;
+    float: right;
+    margin-right: 0.2em;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.fbc_showfeed_pagename {
+    margin-left: 12px;
+    margin-top: 0.6em;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.fbc_showfeed_postname {
+    margin-top: 0.1em;
+    display: inline-block;
+    font-size: 0.9em;
+}
+
+.fbc_showfeed_pic {
+    padding: 6px;
+    max-width: 200px;
+    max-height: 200px;
+    float: right;
+}
+
+.fbc_showfeed_post {
+    font-size: 75%;
+    font-style: normal;
+    font-weight: normal;
+    color: #000;
+}
+
+.fbc_showfeed_post a {
+    font-weight: normal;
+    color: #000;
+}
+
+.fbc_showfeed_post a:hover {
+    color: #444;
+}
+
+.fbc_showfeed_poster_icon {
+    padding: 2px;
+    max-width: 20px;
+    max-height: 20px;
+    float: left;
+}
+
+.fbc_showfeed_post br {
+    clear: left;
+}
+
+.fbc_showfeed hr {
+    clear: both;
+    margin-left: 1em;
+    margin-right: 1em;
+    color: #dddddd;
+    border: 1px solid #dddddd;
+}
+
+.fbc_showfeed {
+    margin-left: .25em;
+    margin-right: .25em;
+}
+
+.fbc_showfeed_subtitle {
+    margin-left: 12px;
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+.fbc_showfeed_date {
+    margin-left: 3em;
+    font-size: 60%;
+    font-style: italic;
+}
+
